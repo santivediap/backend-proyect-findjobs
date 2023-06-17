@@ -1,0 +1,2 @@
+# Prevent node_modules from being uploaded in GitHub
+node_modules/
