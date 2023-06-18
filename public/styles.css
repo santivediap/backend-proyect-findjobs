@@ -3,11 +3,11 @@
 :root{
     --main-teal-color: #00D09C;
     --main-grey-color: #646464;
+    --main-black-color:#262626;
 }
 
 
-/* TAGS  -----------------------------------------------------------------------------  */
-
+/* MAIN TAGS  -----------------------------------------------------------------------------  */
 body {
     margin:0;
     box-sizing: border-box;
@@ -33,22 +33,6 @@ nav {
     justify-content: space-between;
     width: 90%;
 }
-
-nav > .button {
-    width: 30%;
-    font-size: 3.5vw;
-}
-
-.button {
-    width: 60%;
-    padding: 2%;
-    border: 1vw solid var(--main-teal-color);
-    background-color: #262626;
-    color: #ffffff;
-    border-radius: 2vw 2vw;
-    font-size: 5vw;
-}
-
 main {
     margin: 2%;
     display: flex;
@@ -69,16 +53,14 @@ footer {
 
 /* SEARCH FORM -------------------------------------------------------------- */
 .search-form {
-    margin: 6% 0;
+    margin: 4% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
     min-height: 15vh;
-
 }
-
 .search-form > input[type="text"] {
     padding: 2%;
     padding-left: 3%;
@@ -95,6 +77,51 @@ footer {
     border-radius: 2vw 2vw;
     font-size: 5w;
 } */
+
+/*  BUTTONS  -------------------------------------------------------------------------------- */
+nav > .button {
+    width: 30%;
+    font-size: 3.5vw;
+}
+.button {
+    width: 60%;
+    padding: 2%;
+    border: 1vw solid var(--main-teal-color);
+    background-color: #262626;
+    color: #ffffff;
+    border-radius: 2vw 2vw;
+    font-size: 5vw;
+}
+.button:hover{
+    background-color: var(--main-teal-color);
+    color: white;
+    box-shadow: 0 0px 10px -2px white;
+    border-color: var(--main-black-color);
+    font-weight: 600;
+}
+input[type="submit"]:hover{
+    box-shadow: 0 0px 10px 0px var(--main-grey-color);
+}
+/* LOGO HOME  --------------------------------------------------------------------------------- */
+.main_logo {
+    width: 30%;
+}
+.logo_wrapper {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    color: var(--main-teal-color);
+    font-family: "Moirai One";
+    font-style: italic;
+    width: 90%;
+    margin-bottom: .9em;
+    margin-top: .9em;
+}
+.logo_wrapper > h1 {
+    font-size: 10vw;
+    margin: 6px 0;
+}
 /* FOOTER ----------------------------------------------------------------------------------- */
 footer > div > p {
     font-size: 4vw;
@@ -118,23 +145,4 @@ margin: 6px 0;
 }
 .icons_footer > img{
     width: 12%;
-}
-/* LOGO HOME  --------------------------------------------------------------------------------- */
-.main_logo {
-    width: 30%;
-}
-.logo_wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: var(--main-teal-color);
-    font-family: "Moirai One";
-    font-style: italic;
-    width: 90%;
-    margin-bottom: 5%;
-    margin-top: 1em;
-}
-.logo_wrapper > h1 {
-    font-size: 10vw;
 }
