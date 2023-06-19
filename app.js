@@ -9,7 +9,6 @@ const port = '3000';
 //  ------   Middlewares   --------
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true })); 
-app.use(error404); // Para ruta no encontrada (404)
 
 
 //   -----  PUG  ------------
@@ -25,6 +24,7 @@ app.get("/", (req, res) => {
 app.use(express.static('public'))
 
 
+app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
