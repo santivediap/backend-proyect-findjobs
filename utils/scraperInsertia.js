@@ -101,11 +101,11 @@ const extractProductData = async (url,browser) => {
                         break;
 
                     case "Tipo de contrato":
-                        offerData[fixedData[0]] = fixedData[1]
+                        offerData["Contrato"] = fixedData[1]
                         break;
 
                     case "Jornada laboral":
-                        offerData[fixedData[0]] = fixedData[1]
+                        offerData["Jornada"] = fixedData[1]
                         break;
 
                     case "Salario":
