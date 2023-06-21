@@ -1,24 +1,29 @@
 --  USERS DATA TABLE --
 CREATE TABLE users (
-  id INT PRIMARY KEY,
+  user_id serial NOT NULL PRIMARY KEY, 
   name VARCHAR(25),
   surname VARCHAR(25),
-  email VARCHAR(60),
+  email VARCHAR(60) UNIQUE, 
   city VARCHAR(30)
 );
 
 --  FAVORITES TABLE --
 CREATE TABLE favorites (
-  id INT PRIMARY KEY,
+  id serial NOT NULL PRIMARY KEY,
   user_id INT,
   company_name VARCHAR(50),
   title VARCHAR(100),
-  description TEXT,
   location VARCHAR(40),
-  salary DECIMAL(6, 2),
-  date DATE,
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  work_schedule VARCHAR(40),
+  experience VARCHAR(30),
+  contract_type VARCHAR(30),
+  salary VARCHAR(40),
+  description TEXT,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
+
+
+
 
 -- INSERT NEW JOB OFFER AS FAVORITE --
 INSERT INTO favorites (id, user_id, company_name, title, description, location, salary, date)

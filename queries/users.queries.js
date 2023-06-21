@@ -1,4 +1,4 @@
-const users_data = {
+const usersQueries = {
     getAllUsers: `SELECT name, surname, email, city 
         FROM users;`,
     getUserByEmail: `
@@ -12,4 +12,5 @@ const users_data = {
         SET name= $1, surname=$2, email=$3, city=$4
         WHERE email =$5;`
 }
-module.exports = users_data;
+module.exports = usersQueries;
+

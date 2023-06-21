@@ -6,11 +6,14 @@ const app = express();
 const port = '3000';
 
 
-//  ------   Middlewares   --------
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true })); 
-app.use(error404); // Para ruta no encontrada (404)
 
+const userRoutes = require('./routes/userRoutes');
+const favsRoutes = require('./routes/favoritesRoutes')
+// Rutas
+app.use('/users',userRoutes); 
+app.use('/favorites',favsRoutes);
 
 //   -----  PUG  ------------
 app.set('view engine', 'pug'); // Template engine PUG
@@ -25,6 +28,11 @@ app.get("/", (req, res) => {
 app.use(express.static('public'))
 
 
+
+
+
+//  ------   Middlewares   --------
+app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)

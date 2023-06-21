@@ -1,60 +1,53 @@
-const pool = require('../utils/db_pgsql');
-const usersQueries = require ('../models/users.queries');
+const users = require ('../models/usersModels')
 
 
-
-
-const getUserByEmail = async (email) => {
-    let client, result;
-    try {
-        client = await pool.connect();
-        const data = await client.query(usersQueries.getUserByEmail,[email]);
-        result = data.rows
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {  
-        client.release(); 
+const getAllUsers = async (req, res) => {
+    let user;
+    if (req.query) {
+        user = await users.getAllUsers(req.query);
     }
-    return result
+    else {
+        user = await users.getAllUsers();
+    }
+    res.status(200).json(user); // [] con las entries encontradas
 }
 
-const createUser = async (user_data) => { // user_data es por donde llega el objeto queries de queries
-    const { name, surname, email, city } = user_data;
-    let client, result;
-    try {
-        client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(usersQueries.createUser,[name, surname, email, city])
-        result = data.rowCount
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {
-        client.release();
+
+const getUserByEmail = async (req, res) => {
+    let user;
+    if (req.query.email) {
+        user = await users.getUserByEmail(req.query.email);
     }
-    return result
+    else {
+        user = await users.getUserByEmail();
+    }
+    res.status(200).json(user); 
 }
 
-const updateUser = async (user_data) => { 
-    const { name, surname, email_1, city, email_2  } = user_data;
-    let client, result;
-    try {
-        client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(usersQueries.updateUser,[name, surname, email_1, city, email_2 ])
-        result = data.rowCount
-    } catch (err) {
-        console.log(err);
-        throw err;
-    } finally {
-        client.release();
-    }
-    return result
+
+const createUser = async (req, res) => {
+    const dataUser = req.body; 
+    const response = await users.createUser(dataUser);
+    res.status(201).json({
+        "usuario creado:": response,
+        data: dataUser
+    });
 }
 
+
+// const updateUser = async (req, res) => {
+//     const dataUser = req.body;
+//     const response = await users.updateUser(dataUser);
+//     res.status(200).json({
+//         "Usuario actualizado": response,
+//         data: dataUser
+//     });
+// }
 
 
 module.exports = {
+    getAllUsers,
     getUserByEmail,
-    updateUser,
+    // updateUser,
     createUser
 }
