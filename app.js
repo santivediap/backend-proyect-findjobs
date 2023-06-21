@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 app.use(express.static('public'))
 
 
+app.use(error404); // Para ruta no encontrada (404)
 
 
 
