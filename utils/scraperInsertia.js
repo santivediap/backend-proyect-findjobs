@@ -154,7 +154,7 @@ const extractProductData = async (url,browser) => {
                 return jobTitleData.then(titleData => {
                     return jobLocationData.then(locationData => {
                         return jobCompanyNameData.then(companyNameData => {
-                            return Object.assign({}, titleData, locationData, companyNameData, specificData, descriptionData)
+                            return Object.assign({}, titleData, companyNameData, locationData, specificData, descriptionData)
                         })
                     })
                 })
