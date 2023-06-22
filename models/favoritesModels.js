@@ -19,12 +19,12 @@ const getAllFavorites = async () => {
       
 
 const createFavorites = async (offer_data) => { 
-    const { email, title, location, company_name, experience, work_schedule, contract_type, salary, description} = offer_data;
+    const { email, title, company_name, location, experience, work_schedule, contract_type, salary, description} = offer_data;
     let client, result;
     
     try {
         client = await pool.connect(); 
-        const data = await client.query(usersFavorites.addFavorite,[email, title, location, company_name, experience, work_schedule, contract_type, salary, description])
+        const data = await client.query(usersFavorites.addFavorite,[email, title, company_name, location, experience, work_schedule, contract_type, salary, description])
         result = data.rowCount
         console.log(result);
     } catch (err) {
@@ -38,8 +38,8 @@ const createFavorites = async (offer_data) => {
 
 // {
 //     "title":"full-stack con React y Angular",
-//     "location":"Córdoba",
 //     "company_name":"TecnoPro Webs",
+//     "location":"Córdoba",
 //     "experience":"2 años",
 //     "work_schedule":"Jornada Intensiva"
 //     "contract_type":"Indefinido",

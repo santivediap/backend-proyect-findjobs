@@ -14,16 +14,10 @@ const getAllUsers = async (req, res) => {
 
 
 const getUserByEmail = async (req, res) => {
-    let user;
-    if (req.query.email) {
-        user = await users.getUserByEmail(req.query.email);
-    }
-    else {
-        user = await users.getUserByEmail();
-    }
+    let user = await users.getUserByEmail(req.params.email);
+  
     res.status(200).json(user); 
 }
-
 
 const createUser = async (req, res) => {
     const dataUser = req.body; 

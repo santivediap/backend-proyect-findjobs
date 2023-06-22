@@ -2,7 +2,7 @@ const usersQueries = {
     getAllUsers: `SELECT name, surname, email, city 
         FROM users;`,
     getUserByEmail: `
-        SELECT name, surname, email
+        SELECT name, surname, email, city
         FROM users
         where email=$1;`,
     createUser: `INSERT INTO users(

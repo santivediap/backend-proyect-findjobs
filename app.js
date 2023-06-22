@@ -10,7 +10,7 @@ app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true })); 
 
 const userRoutes = require('./routes/userRoutes');
-const favsRoutes = require('./routes/favoritesRoutes')
+const favsRoutes = require('./routes/favoritesRoutes');
 // Rutas
 app.use('/users',userRoutes); 
 app.use('/favorites',favsRoutes);
