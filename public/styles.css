@@ -101,13 +101,14 @@ nav > .button {
     border-color: var(--main-black-color);
     font-weight: 600;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover, .mainbtns:hover{
     box-shadow: 0 0px 10px 0px var(--main-grey-color);
 }
 .header_icons{
     cursor: pointer;
     width: 2.6em;
 }
+
 /* LOGO HOME  --------------------------------------------------------------------------------- */
 .main_logo {
     width: 30%;
@@ -153,6 +154,11 @@ margin: 6px 0;
     width: 12%;
 }
 /* ------------------- */
+.noFavsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .objectKey{
     border-bottom: #00D09C 1.4px solid;
     margin-bottom: 2px;
