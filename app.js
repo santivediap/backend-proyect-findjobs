@@ -9,27 +9,28 @@ const port = '3000';
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true })); 
 
+// llamadas a carpeta ROUTES
+const viewsRoutes = require('./routes/viewsRoutes');
 const userRoutes = require('./routes/userRoutes');
 const favsRoutes = require('./routes/favoritesRoutes');
-// Rutas
+
+// Rutas BBDD
 app.use('/users',userRoutes); 
 app.use('/favorites',favsRoutes);
 
-//   -----  PUG  ------------
+
+//   -----   PUG  ------------
 app.set('view engine', 'pug'); // Template engine PUG
 app.set('views', './views');
-//Pug pages
-app.get("/", (req, res) => {
-    res.status(200).render("home_out.pug")
-})
+
+//Rutas view PUG
+app.use('/', viewsRoutes); 
+app.use('/users/profile', viewsRoutes); 
+app.use('/favorites', viewsRoutes);
 
 
 //Public folder
-app.use(express.static('public'))
-
-
-app.use(error404); // Para ruta no encontrada (404)
-
+app.use(express.static('public'));
 
 
 //  ------   Middlewares   --------

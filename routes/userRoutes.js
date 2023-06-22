@@ -8,3 +8,4 @@ usersRouter.get('/', usersControllers.getAllUsers);
 usersRouter.post('/profile', usersControllers.createUser);
 
 module.exports = usersRouter;
+

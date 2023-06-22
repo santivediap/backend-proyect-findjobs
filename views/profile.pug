@@ -7,16 +7,17 @@ html(lang="en")
         title PROFILE
         link(rel="stylesheet" href=" ../styles.css")
     body
-        include ./header.pug
+        include ./header_in.pug
         main
             section 
                 h1 YOUR PROFILE
-                p Name 
-                p #{userName}
-                p Surname
-                p #{userSurname}
-                p Email
-                p #{userEmail}
-                p City
-                p #{userCity}
+                p(Class="objectKey") Name
+                p(Class="objectValue") Jorge#{userName}
+                p(Class="objectKey") Surname
+                p(Class="objectValue") Blas#{userSurname}
+                p(Class="objectKey") Email
+                p(Class="objectValue") jorge@gmail.com#{userEmail}
+                p(Class="objectKey") City
+                p(Class="objectValue") Madrid#{userCity}
+
         include ./footer.pug
