@@ -5,23 +5,38 @@ const error404 = require('./middlewares/error404')
 const app = express();
 const port = '3000';
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
 
-// Template engine PUG
-app.set('view engine', 'pug');
+app.use(express.json()); // Habilitar tipo de dato a recibir
+app.use(express.urlencoded({ extended: true })); 
+
+// llamadas a carpeta ROUTES
+const viewsRoutes = require('./routes/viewsRoutes');
+// const userRoutes = require('./routes/userRoutes');
+// const favsRoutes = require('./routes/favoritesRoutes');
+
+// Rutas BBDD
+// app.use('/users',userRoutes); 
+// app.use('/favorites',favsRoutes);
+
+
+//   -----   PUG  ------------
+app.set('view engine', 'pug'); // Template engine PUG
 app.set('views', './views');
 
+//Rutas view PUG
+app.use('/', viewsRoutes); 
+app.use('/users/profile', viewsRoutes); 
+app.use('/favorites', viewsRoutes);
+
+
 //Public folder
-app.use(express.static('public'))
+app.use(express.static('public'));
 
-//Pug pages
-app.get("/", (req, res) => {
-    res.status(200).render("home_out.pug")
-})
+app.use(error404); // Para ruta no encontrada (404)
 
-app.use(error404); // Middleware Para ruta no encontrada (404)
+
+//  ------   Middlewares   --------
+app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
