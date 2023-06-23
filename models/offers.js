@@ -1,18 +1,21 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const objectSchema = {
-    title: String,
-    price: Number,
-    description: String,
-    // provider: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Provider'
-    // }
-}
+const offerSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  companyName: {
+    type: String,
+    required: true,
+  },
+  location: String,
+  experience: String,
+  contract_type: String,
+  work_schedule: String,
+  salary: String,
+  description: String,
+});
+const offer = new mongoose.model("offers", offerSchema);
 
-// Crear el esquema
-const offerSchema = mongoose.Schema(objectSchema);
-// Crear el modelo
-const Offer = mongoose.model('Offer', offerSchema);
-
-module.exports = Offer;
+module.exports = offer;

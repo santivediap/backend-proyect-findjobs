@@ -1,40 +1,39 @@
-const express = require('express');
+const express = require("express");
 // const morgan = require('./utils/morgan');
-const error404 = require('./middlewares/error404')
+const error404 = require("./middlewares/error404");
+require("./utils/db_mongo");
 
 const app = express();
-const port = '3000';
-
+const port = "3000";
 
 app.use(express.json()); // Habilitar tipo de dato a recibir
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 
-const userRoutes = require('./routes/userRoutes');
-const favsRoutes = require('./routes/favoritesRoutes')
+const offersRoutes = require("./routes/offersRoutes");
+//const userRoutes = require("./routes/userRoutes");
+//const favsRoutes = require("./routes/favoritesRoutes");
+
 // Rutas
-app.use('/users',userRoutes); 
-app.use('/favorites',favsRoutes);
+//app.use("/users", userRoutes);
+//app.use("/favorites", favsRoutes);
+app.use("/api", offersRoutes);
 
 //   -----  PUG  ------------
-app.set('view engine', 'pug'); // Template engine PUG
-app.set('views', './views');
+app.set("view engine", "pug"); // Template engine PUG
+app.set("views", "./views");
 //Pug pages
 app.get("/", (req, res) => {
-    res.status(200).render("home_out.pug")
-})
-
+  res.status(200).render("/views/home_out.pug");
+});
 
 //Public folder
-app.use(express.static('public'))
-
+app.use(express.static("public"));
 
 app.use(error404); // Para ruta no encontrada (404)
-
-
 
 //  ------   Middlewares   --------
 app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}`)
-})
+  console.log(`Server listening on port ${port}`);
+});
