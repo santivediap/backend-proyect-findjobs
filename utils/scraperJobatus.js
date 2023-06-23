@@ -8,7 +8,7 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: true,
+          headless: false,
           defaultViewport: null,
           args: ["--start-maximized"],
         });
@@ -23,29 +23,22 @@ const scrapOfferData = async (url) => {
         
         await page.waitForTimeout(2000);
 
-        // Esperamos al input de busqueda
-        let searchText = await page.waitForXPath(`//*[@id="te"]`);
-        await searchText.type("puppeteer");
-      
-        await page.waitForXPath(`//*[@class="btn btn-warning btn-block mb-3 font-weight-medium"]`, {
-          visible: true,
-        });
-      
-        const [search] = await page.$x(`//*[@class="btn btn-warning btn-block mb-3 font-weight-medium"]`);
-        if (search) {
-          await search.click();
-        }
+        const jobOffer = await page.$(".result.mt-2 > .row > .col-md-12 > .jobtitle > a.out")
 
-        await page.waitForSelector(".bg-white.col-12.col-sm-12.col-md-12.col-lg-9 > .p-2.border-bottom.py-3.bg-white > .row.fs--15 > .col-10.col-md-9.col-lg-7 > h3 > a")
+        if(jobOffer == null) {
+            await browser.close()
+            return null
+        } else {
+            await page.waitForSelector(".result.mt-2 > .row > .col-md-12 > .jobtitle > a.out")
 
-        const tmpurls = await page.$$eval(".bg-white.col-12.col-sm-12.col-md-12.col-lg-9 > .p-2.border-bottom.py-3.bg-white > .row.fs--15 > .col-10.col-md-9.col-lg-7 > h3 > a", data => data.map(a=>a.href))
+        const tmpurls = await page.$$eval(".result.mt-2 > .row > .col-md-12 > .jobtitle > a.out", data => data.map(a=>a.href))
 
         //Quitamos los duplicados
         const urls = await tmpurls.filter((link,index) =>{ return tmpurls.indexOf(link) === index})
     
         console.log("url capuradas",urls)
         // Me quedo con los 20 primeros productos, porque sino es muy largo
-        const urls2 = urls.slice(0, 5);
+        const urls2 = urls.slice(0, 6);
     
         // Filtramos los productos
         // Extraemos el dato de cada producto
@@ -66,6 +59,7 @@ const scrapOfferData = async (url) => {
         // Devolvemos el array con los productos
 
         return scrapedData
+        }
     
     } catch (err) {
         console.log(err);
@@ -84,29 +78,50 @@ const extractProductData = async (url,browser) => {
         // Accedemos al link de cada producto que nos llega por parámetros
         await page.goto(url)
 
-        const jobSpecificData = page.$$eval(".list-unstyled.mb-0.fs--15 > .list-item.clearfix.border-bottom.py-2", data => {
+        const jobSpecificData = page.$$eval(".detail_block", data => {
             let offerData = {}
 
             for(let i = 0; i < data.length; i++) {
                 let fixedData = data[i].innerText.split("\n")
-                offerData[fixedData[1]] = fixedData[0]
+
+                switch (fixedData[0]) {
+                    case "Empresa":
+                        offerData[fixedData[0]] = fixedData[1]
+                        break;
+
+                    case "Localidad":
+                        offerData["Ubicación"] = fixedData[1]
+                        break;
+
+                    case "Tipo de Contrato":
+                        offerData["Contrato"] = fixedData[1]
+                        break;
+
+                    case "Salario":
+                        offerData[fixedData[0]] = fixedData[1]
+                        break;
+                }
             }
 
+            const {Empresa, Ubicación, Contrato, Salario} = offerData
+
+            const finalData = {Ubicación, Empresa, Contrato, Salario}
+
+            return finalData
+        })
+
+        const jobDescriptionData = page.$eval("#description_body", data => {
+            let offerData = {}
+
+            offerData["Descripción"] = data.innerText
+
             return offerData
         })
 
-        const jobDescriptionData = page.$eval(".fs--16.text-gray-800", data => {
+        const jobTitleData = page.$eval("#offer_title", data => {
             let offerData = {}
 
-            offerData["Description"] = data.innerText
-
-            return offerData
-        })
-
-        const jobTitleData = page.$eval(".h3.h5-xs.mb-2", data => {
-            let offerData = {}
-
-            offerData["Title"] = data.innerText
+            offerData["Título"] = data.innerText
 
             return offerData
         })

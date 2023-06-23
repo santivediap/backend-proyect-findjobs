@@ -37,17 +37,13 @@ function validateSearch(event) {
 function searchJobs() {
     if(document.getElementById("search-form")) {
         const formElement = document.getElementById("search-form")
-        formElement.addEventListener("submit", (event) => {
-            event.preventDefault()
+        formElement.addEventListener("submit", async (event) => {
 
-            if(validateSearch(event)) {
-                console.log("VALIDAAAA");
-            } else {
+            if(!validateSearch(event)) {
+                event.preventDefault()
                 console.log("NO VALIDAAA");
             }
         })
-    } else {
-        console.log("dsafmwkom");
     }
 }
 

@@ -1,13 +1,16 @@
-const express = require("express");
-const morgan = require("./utils/morgan");
-const error404 = require("./middlewares/error404");
 require("./utils/db_mongo");
+const express = require('express');
+const morgan = require('./utils/morgan');
+const error404 = require('./middlewares/error404')
+
+const apiSearchRouter = require('./routes/apiSearchRoutes')
 
 const app = express();
 const port = "3000";
 
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true }));
+
 // llamadas a carpeta ROUTES
 const offersRoutes = require("./routes/offersRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -25,8 +28,9 @@ app.set("views", "./views");
 
 //Rutas view PUG
 app.use("/", viewsRoutes);
-app.use("/users/profile", viewsRoutes);
-app.use("/favorites", viewsRoutes);
+
+// Logger
+app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
 //Public folder
 app.use(express.static("public"));
