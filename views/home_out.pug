@@ -6,11 +6,9 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title HOME
         link(rel="stylesheet" href=" ../styles.css")
+        link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
-        header
-            nav
-                button(id="logOutButton" class="button") LOG IN
-                button(id="logOutButton" class="button") CREATE ACCOUNT
+        include ./header_out.pug
         main
             div(class="logo_wrapper")
                 img(src="../assets/logo.png", alt="logo" class="main_logo")

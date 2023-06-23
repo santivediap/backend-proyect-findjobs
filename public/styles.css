@@ -2,8 +2,10 @@
 
 :root{
     --main-teal-color: #00D09C;
-    --main-grey-color: #646464;
+    --main-grey-color: #787777;
     --main-black-color:#262626;
+    --main-white-color: rgb(233, 233, 233);
+    
 }
 
 
@@ -11,12 +13,12 @@
 body {
     margin:0;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: var(--main-white-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
-h1{
+h1, h2, h3{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 header {
@@ -24,7 +26,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #646464;
+    background-color: var(--main-grey-color);
 }
 nav {
     display: flex;
@@ -41,7 +43,12 @@ main {
     position: relative;
 }
 section{
-    width: 85%;
+    width: 95%;
+}
+label{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: var(--main-grey-color);
+    margin: 2.5px 0 5px;
 }
 footer {
     padding: 3% 4% ;
@@ -63,22 +70,29 @@ footer {
     width: 90%;
     min-height: 15vh;
 }
-.search-form > input[type="text"] {
+.search-form, .signUp-form > input[type="text"] , input[type="email"], input[type="password"]{
     padding: 2%;
     padding-left: 3%;
-    width: 70%;
+    width: 80%;
     border: 1vw solid rgb(33, 33, 33);
     border-radius: 5vw 5vw;
     font-size: 5vw;
     margin-bottom: 3%;
 }
+/*  SIGN UP FORM       ---------------------------------------------------------- */
+.signUp-form{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+.signUp-form > input[type="text"] , input[type="email"], input[type="password"]{
+margin-left: 7%;
+}
+.signUp-form > input[type="submit"]{
+    margin: 8px auto;
 
-/* .search-form > input[type="submit"] {
-    width: 60%;
-    border: 2px solid black;
-    border-radius: 2vw 2vw;
-    font-size: 5w;
-} */
+}
+
 
 /*  BUTTONS  -------------------------------------------------------------------------------- */
 nav > .button {
@@ -129,6 +143,10 @@ input[type="submit"]:hover, .mainbtns:hover{
     font-size: 10vw;
     margin: 6px 0;
 }
+#logoNav{
+    width: 50px;
+}
+
 /* FOOTER ----------------------------------------------------------------------------------- */
 footer > div > p {
     font-size: 4vw;
@@ -153,12 +171,61 @@ margin: 6px 0;
 .icons_footer > img{
     width: 12%;
 }
-/* ------------------- */
-.noFavsContainer{
+/* ----------------------  CONTAINERS  DEL  MAIN ---------------------------------------- */
+.parabtn-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 4vw;
 }
+.search_info{
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius:5vw 5vw;
+
+}
+.search_info > h3{
+    margin-bottom: 2px;
+    padding-left: 5vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#search_inputValues{
+    display: flex;
+    justify-content: space-around;
+    margin: 1.5px 0;
+    color: #ffffff;
+}
+#search_inputValues > p{
+    background-color: var(--main-grey-color);
+    width: 40%;
+    text-align: center;
+    border-radius: 5vw 5vw;
+    padding: 2.3vw 0;
+}
+.article_offer{
+    margin-top: 3vw;
+    padding: 1.3vw 2vw 1.2vw 2.8vw;
+    background-color: #ffffff;
+    border-radius: 5vw 5vw;
+}
+.article_offer > h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 3px;
+}
+.article_offer:last-child{
+    text-align: justify;
+}
+.dataOffer{
+    display: flex;
+    flex-direction: column;
+}
+.dataOffer > p {
+    margin: 6px 0;
+}
+
+/* -------------------------------- */
+
 .objectKey{
     border-bottom: #00D09C 1.4px solid;
     margin-bottom: 2px;

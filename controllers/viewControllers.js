@@ -4,14 +4,25 @@ const homeSearch =  (req, res) => {
 const userProfile = (req, res) => {
     res.status(200).render("profile.pug")
 }
-const UserFavorites = (req, res) => {
+const userFavorites = (req, res) => {
     res.status(200).render("userFavorites.pug")
 }
-
+const searchResult = (req, res) => {
+    res.status(200).render("search_results.pug")
+}
+const userLogin  = (req, res) => {
+    res.status(200).render("loginUser.pug")
+}
+const userSignUp  = (req, res) => {
+    res.status(200).render("createAccount.pug")
+}
 
 module.exports = {
     homeSearch,
     userProfile,
-    UserFavorites
+    userFavorites,
+    searchResult,
+    userLogin,
+    userSignUp
 
 }
