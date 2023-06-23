@@ -8,7 +8,7 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: true,
+          headless: false,
           defaultViewport: null,
           args: ["--start-maximized"],
         });
@@ -21,27 +21,15 @@ const scrapOfferData = async (url) => {
           waitUntil: "networkidle2",
         });
 
-        // await page.waitForTimeout(2000);
+        const jobOffer = await page.$(".btn.btn-info.btn-sm.btn-block.mb-3")
 
-        // Esperamos al input de busqueda
-        let searchText = await page.waitForSelector('input[placeholder="Profesión, empresa, palabra clave"] ');
-        await searchText.type("FullStack");
+        console.log(jobOffer);
 
-        await page.waitForSelector('.cc-nb-okagree')
-        .then(selector => {
-            selector.click();
-        })
-
-        // let submit = await page.$eval('input[type="submit"]', search => {
-        //     search.click()
-        // })
-      
-        await page.waitForSelector('input[type="submit"]')
-        .then(selector => {
-            selector.click();
-        })
-
-        await page.waitForSelector(".btn.btn-info.btn-sm.btn-block.mb-3")
+        if(jobOffer == null) {
+            await browser.close()
+            return null
+        } else {
+            await page.waitForSelector(".btn.btn-info.btn-sm.btn-block.mb-3")
 
         const tmpurls = await page.$$eval(".btn.btn-info.btn-sm.btn-block.mb-3", data => data.map(a=>a.href))
 
@@ -71,7 +59,7 @@ const scrapOfferData = async (url) => {
         // Devolvemos el array con los productos
 
         return scrapedData
-    
+        }
     } catch (err) {
         console.log(err);
     }
@@ -141,25 +129,41 @@ const extractProductData = async (url,browser) => {
             return offerData
         })
 
-        const jobCompanyNameData = page.$eval("a[style='color: #f16421']", data => {
-            let offerData = {}
+        const companyName = await page.$("a[style='color: #f16421']")
 
-            offerData["Empresa"] = data.innerText.trim()
+        if(companyName == null) {
 
-            return offerData
-        })
-        
-        return jobSpecificData.then(specificData => {
-            return jobDescriptionData.then(descriptionData => {
-                return jobTitleData.then(titleData => {
-                    return jobLocationData.then(locationData => {
-                        return jobCompanyNameData.then(companyNameData => {
-                            return Object.assign({}, titleData, companyNameData, locationData, specificData, descriptionData)
+            return jobSpecificData.then(specificData => {
+                return jobDescriptionData.then(descriptionData => {
+                    return jobTitleData.then(titleData => {
+                        return jobLocationData.then(locationData => {
+                            return Object.assign({}, titleData, locationData, specificData, descriptionData)
                         })
                     })
                 })
+            }) // Devuelve los datos de un producto
+
+        } else {
+            const jobCompanyNameData = page.$eval("a[style='color: #f16421']", data => {
+                let offerData = {}
+    
+                offerData["Empresa"] = data.innerText.trim()
+    
+                return offerData
             })
-        }) // Devuelve los datos de un producto
+
+            return jobSpecificData.then(specificData => {
+                return jobDescriptionData.then(descriptionData => {
+                    return jobTitleData.then(titleData => {
+                        return jobLocationData.then(locationData => {
+                            return jobCompanyNameData.then(companyNameData => {
+                                return Object.assign({}, titleData, companyNameData, locationData, specificData, descriptionData)
+                            })
+                        })
+                    })
+                })
+            }) // Devuelve los datos de un producto
+        }
     }
     catch(err){
         // Devolvemos el error 
