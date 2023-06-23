@@ -11,12 +11,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // llamadas a carpeta ROUTES
 const viewsRoutes = require('./routes/viewsRoutes');
-// const userRoutes = require('./routes/userRoutes');
-// const favsRoutes = require('./routes/favoritesRoutes');
+const userRoutes = require('./routes/userRoutes');
+const favsRoutes = require('./routes/favoritesRoutes');
 
 // Rutas BBDD
-// app.use('/users',userRoutes); 
-// app.use('/favorites',favsRoutes);
+app.use('/users',userRoutes); 
+app.use('/favorites',favsRoutes);
 
 
 //   -----   PUG  ------------
@@ -31,8 +31,6 @@ app.use('/favorites', viewsRoutes);
 
 //Public folder
 app.use(express.static('public'));
-
-app.use(error404); // Para ruta no encontrada (404)
 
 
 //  ------   Middlewares   --------
