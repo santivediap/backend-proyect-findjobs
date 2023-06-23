@@ -4,8 +4,10 @@ const viewController = require ('../controllers/viewControllers');
 
 actionRouter.get('/', viewController.homeSearch);
 actionRouter.get('/users/profile', viewController.userProfile);
-actionRouter.get('/favorites', viewController.UserFavorites);
-actionRouter.get('/search-result', viewController.searchResult);
+actionRouter.get('/user/favorites', viewController.userFavorites);
+actionRouter.get('/search-results', viewController.searchResult);
+actionRouter.get('/user-login', viewController.userLogin);
+actionRouter.get('/create-account', viewController.userSignUp);
 
 
 module.exports = actionRouter;

@@ -25,8 +25,6 @@ app.set('views', './views');
 
 //Rutas view PUG
 app.use('/', viewsRoutes); 
-app.use('/users/profile', viewsRoutes); 
-app.use('/favorites', viewsRoutes);
 
 
 //Public folder

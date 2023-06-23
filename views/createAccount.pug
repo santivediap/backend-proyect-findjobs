@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title SIGN UP
+        link(rel="stylesheet" href=" ../styles.css")
+        link(rel="icon" type="image/x-icon" href="/assets/logo.png")
+    body
+        header
+            nav 
+                img(src="/assets/logo.png", alt="logo" id="logoNav")
+        main 
+            h1 SIGN UP 
+            form(action="" class="signUp-form" id="signUp-form")
+                label Name:
+                input(type="text" placeholder="your name" name="user name")
+                label Surname:
+                input(type="text" placeholder="your surname" name="user surname")
+                label City:
+                input(type="text" placeholder="your city" name="user city")
+                label Email:
+                input(type="email" placeholder="your email" name="user email")
+                label Password:
+                input(type="password" placeholder="your password" name="user password") 
+                label Reapeat your password:
+                input(type="password" placeholder="repeat password" name="user password") 
+                input(type="submit" value="Enter" class="button") 
+        include ./footer.pug
