@@ -21,13 +21,18 @@ const getUserByEmail = async (email) => {  // el email hay que cogerlo desde el 
     let client, result;
     try {
         client = await pool.connect();
+        console.log(email);
         const data = await client.query(usersQueries.getUserByEmail,[email]);
         result = data.rows
+        console.log(result);
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {  
-        client.release(); 
+    } 
+    finally {  
+        if(client){ 
+            client.release(); 
+        }
     }
     return result
 }

@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title PROFILE
+        link(rel="stylesheet" href=" ../styles.css")
+    body
+        include ./header_in.pug
+        main
+            section 
+                h1 YOUR PROFILE
+                p(Class="objectKey") Name
+                p(Class="objectValue") Jorge#{userName}
+                p(Class="objectKey") Surname
+                p(Class="objectValue") Blas#{userSurname}
+                p(Class="objectKey") Email
+                p(Class="objectValue") jorge@gmail.com#{userEmail}
+                p(Class="objectKey") City
+                p(Class="objectValue") Madrid#{userCity}
+
+        include ./footer.pug
