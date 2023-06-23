@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title HOME
+        link(rel="stylesheet" href=" ../styles.css")
+    body
+        header
+            nav
+                button(id="logOutButton" class="button") LOG IN
+                button(id="logOutButton" class="button") CREATE ACCOUNT
+        main
+            div(class="logo_wrapper")
+                img(src="../assets/logo.png", alt="logo" class="main_logo")
+                h1 FINDJOBS
+
+            each val in scrap
+                each valor, key in val
+                    p #{key} : #{valor}
+        script(src="../scripts.js")
+        include ./footer.pug
+            
