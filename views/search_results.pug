@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title PROFILE
+        link(rel="stylesheet" href=" ../styles.css")
+    body
+        include ./header_in.pug
+        main
+            section 
+                h1 MY FAVORITE JOB OFFERS
+                article 
+                    form(action="" class="search-form" id="search-form")
+                        input(type="text" placeholder="Position" name="position")
+                        input(type="text" placeholder="City" name="location") 
+                        input(type="submit" value="Search" class="button") 
+                    div(class="search_info")
+                        h3 These are the results for 
+                        div(id="search_inputValues")
+                            p #{input_value_position} Full Stack
+                            p #{input_value_location} Madrid
+                    include ./offersCards
+        include ./footer.pug
+
