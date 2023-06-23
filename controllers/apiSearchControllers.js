@@ -1,6 +1,6 @@
 const { query } = require('express');
 const scraperInsertia = require('../utils/scraperInsertia')
-const scraperTecnoempleo = require('../utils/scraperTecnoempleo')
+const scraperJobatus = require('../utils/scraperJobatus')
 
 const searchOffers = async (req, res) => {
 
@@ -18,12 +18,31 @@ const searchOffers = async (req, res) => {
 
 const getOffers = async (req, res) => {
 
-    res.status(200).json({
-        "position": req.query.position,
-        "location": req.query.location
-    })
+    let insertiaResults = await scraperInsertia.scrapOfferData(`https://www.insertia.net/trabajo-de-${req.query.position.toLowerCase()}/${req.query.location.toLowerCase()}-${req.query.location.toLowerCase()}`)
+                .then(insertia => insertia)
 
-    console.log(req.query);
+    let jobatusResults = await scraperJobatus.scrapOfferData(`https://www.jobatus.es/trabajo?q=${req.query.position}&l=${req.query.location}&jb=all&sort=&d=&page=1`)
+                .then(jobatus => jobatus)
+                
+    const result = [];
+
+    if(insertiaResults != null) {
+        result.push(...insertiaResults)
+    }
+
+    if(jobatusResults != null) {
+        result.push(...jobatusResults)
+    }
+
+    if(result.length < 1) {
+        res.status(200).render("search_results", {
+            "scrap": [{"response": "NOT FOUND"}]
+        })
+    } else {
+        res.status(200).render("search_results", {
+            "scrap": result
+        })
+    }
 
 }
 
