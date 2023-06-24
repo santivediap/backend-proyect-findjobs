@@ -1,9 +1,13 @@
 require("./utils/db_mongo");
 const express = require('express');
+require('dotenv').config();
 const morgan = require('./utils/morgan');
 const error404 = require('./middlewares/error404')
 
-const apiSearchRouter = require('./routes/apiSearchRoutes')
+
+
+// const bodyParser = require('body-parser');
+
 
 const app = express();
 const port = "3000";
@@ -11,7 +15,9 @@ const port = "3000";
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true }));
 
+
 // llamadas a carpeta ROUTES
+const apiSearchRouter = require('./routes/apiSearchRoutes')
 const offersRoutes = require("./routes/offersRoutes");
 const userRoutes = require("./routes/userRoutes");
 const favsRoutes = require("./routes/favoritesRoutes");
@@ -19,6 +25,7 @@ const viewsRoutes = require("./routes/viewsRoutes");
 
 // Rutas
 app.use("/users", userRoutes);
+console.log('hasta aquí he llegado en app.js');
 app.use("/favorites", favsRoutes);
 app.use("/api", offersRoutes);
 
@@ -36,6 +43,8 @@ app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 app.use(express.static("public"));
 
 //  ------   Middlewares   --------
+// app.use(bodyParser.urlencoded({ extended: true })); // Configuración del middleware body-parser
+// app.use(bodyParser.json());
 app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {

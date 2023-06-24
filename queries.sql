@@ -4,7 +4,9 @@ CREATE TABLE users (
   name VARCHAR(25),
   surname VARCHAR(25),
   email VARCHAR(60) UNIQUE, 
-  city VARCHAR(30)
+  city VARCHAR(30),
+  password VARCHAR(20),
+  logged BOOLEAN
 );
 
 --  FAVORITES TABLE --

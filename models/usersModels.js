@@ -38,22 +38,29 @@ const getUserByEmail = async (email) => {  // el email hay que cogerlo desde el 
 }
 
 const createUser = async (user_data) => { // user_data es por donde llega el objeto queries de queries
-    const { name, surname, email, city } = user_data;
+    const { name, surname, email, city, password } = user_data;
     let client, result;
     try {
         client = await pool.connect(); // Espera a abrir conexion
-        const data = await client.query(usersQueries.createUser,[name, surname, email, city])
+        const data = await client.query(usersQueries.createUser,[name, surname, email, city, password])
         result = data.rowCount
     } catch (err) {
         console.log(err);
         throw err;
-    } finally {
-        client.release();
-    }
+    } 
+    // finally {
+    //     client.release();
+    // }
     return result
 }
 
 
+module.exports = {
+    getAllUsers,
+    getUserByEmail,
+    createUser
+    // updateUser,
+}
 // {
 //     "name": "Jorge"
 //     "surname": "blas"
@@ -79,10 +86,3 @@ const createUser = async (user_data) => { // user_data es por donde llega el obj
 // }
 
 
-
-module.exports = {
-    getAllUsers,
-    getUserByEmail,
-    createUser
-    // updateUser,
-}
