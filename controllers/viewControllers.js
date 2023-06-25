@@ -1,12 +1,20 @@
+const { loginUser } = require("./usersControllers");
+
 const homeSearch =  (req, res) => {
     res.status(200).render("home_out.pug")
 }
 const userProfile = (req, res) => {
-    res.status(200).render("profile.pug");
-
-
-
+    // const { t } = req.query;
+    // const { name, surname, email, city } = req.decoded;
+    const { name, surname, email, city } = req.query;
+    console.log(req.decoded);
     
+    res.status(200).render("profile.pug", {
+        "name": name,
+        "surname":surname,
+        "email": email,
+        "city": city
+    });
 }
 const userFavorites = (req, res) => {
     res.status(200).render("userFavorites.pug")

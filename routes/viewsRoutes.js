@@ -1,6 +1,7 @@
 const express = require('express');
 const actionRouter = express.Router(); 
 const viewController = require ('../controllers/viewControllers');
+// const verifyUser = require ('../middlewares/verifiedToken');
 
 actionRouter.get('/', viewController.homeSearch);
 actionRouter.get('/users/profile', viewController.userProfile);

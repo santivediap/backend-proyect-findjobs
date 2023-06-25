@@ -7,21 +7,18 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const users = require ('../models/usersModels')
 
-console.log('estoy en controladores');
 
 const signUpUser = async(req, res) => {
-    console.log('estoy en signup user ');
     let data;
     try {
         const {name, surname, email, city, password} = req.body;
-        console.log(name, surname, email, city, password);
+                // console.log(name, surname, email, city, password);
         const hashPassword = await bcrypt.hash(password, saltRounds);
-        console.log(hashPassword);
+                // console.log(hashPassword);
         if(regex.validateEmail(email) && regex.validatePassword(password) && regex.validateName(name) && regex.validateSurname(surname)){
             data = await users.createUser({ 'name': name, 'surname': surname, 'email': email, 'city': city, 'password': hashPassword, 'logged': false});
             // res.status(201).json(data);
-            // console.log(data);
-            res.redirect(`/users/profile?name=${name}&surname=${surname}&email=${email}&city=${city}`);
+            res.redirect(`/`);
         }else{
             res.status(400).json({msg: 'Invalid email or password'});
         }
@@ -34,25 +31,36 @@ const signUpUser = async(req, res) => {
 const loginUser = async(req, res) => {
     let data;
     try {
-        const {email, password} = req.body
-        data = await users.findOne({'email': email}, '-_id -__v');
+        const {email, password} = req.body;
+        console.log(email, password);
+        data = await users.getUserByEmail(email);
+        console.log(data);
+
         if(!data){
             res.status(400).json({ msg: 'Incorrect user or password'}); 
         }else{
-            const match = await bcrypt.compare(password, data.password);
+            const match = await bcrypt.compare(password, data[0].password);
             if(match){
-                await users.updateOne({ email: req.body.email }, { logged: true })
-                const {email, username} = data;
+                let userLoggued = true;
+                await users.updateUser(userLoggued, data[0].email)
                 const userForToken = {
-                    email: email,
-                    username: username,
+                    email: data.email,
+                    name: data.name,
+                    surname: data.surname,
+                    city: data.city
                 };
-                const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '20m'});
-                res
-                .status(200)
-                .json({
-                    msg:'Correct authentication',
-                    token: token});
+                const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '10m'});
+                console.log(token);
+                res.cookie("access-token", token, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                });
+                res.redirect(`/users/profile?name=${data[0].name}&surname=${data[0].surname}&email=${data[0].email}&city=${data[0].city}`);
+                // res.redirect(`/users/profile?t=${token}`);
+                console.log('cookie realizada');
+                
+                
+                
             }else {
                 res.status(400).json({ msg: 'Incorrect user or password'});
             }
@@ -62,6 +70,19 @@ const loginUser = async(req, res) => {
     }
 };
 
+
+
+const logout = async(req, res) => {
+    let data;
+    let logged = false;
+    try {
+        data = await users.updateUser(logged, req.params.email );
+        res.redirect(`/`);
+        console.log('usuario fuera de sesión');
+    } catch (error) {
+        console.log('Error:', error);
+    }
+}
 
 
 
@@ -100,5 +121,6 @@ module.exports = {
     loginUser,
     getAllUsers,
     getUserByEmail,
-    createUser
+    createUser,
+    logout
 }

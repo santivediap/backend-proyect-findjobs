@@ -90,7 +90,7 @@ footer {
     flex-direction: column;
     width: 85%;
 }
-.signUp-form > input[type="text"] , input[type="email"], input[type="password"]{
+.signUp-form > input[type="text"] ,.signUp-form > input[type="email"], .signUp-form >input[type="password"]{
 margin-left: 7%;
 }
 .signUp-form > input[type="submit"]{

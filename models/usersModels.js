@@ -21,10 +21,8 @@ const getUserByEmail = async (email) => {  // el email hay que cogerlo desde el 
     let client, result;
     try {
         client = await pool.connect();
-        console.log(email);
         const data = await client.query(usersQueries.getUserByEmail,[email]);
         result = data.rows
-        console.log(result);
     } catch (err) {
         console.log(err);
         throw err;
@@ -55,11 +53,29 @@ const createUser = async (user_data) => { // user_data es por donde llega el obj
 }
 
 
+const updateUser = async (logged, email) => { 
+    let client, result;
+    try {
+        console.log('esto es user data:', logged, email);
+        client = await pool.connect(); // Espera a abrir conexion
+        const data = await client.query(usersQueries.updateUser,[logged, email])
+        result = data.rowCount
+    } catch (err) {
+        console.log(err);
+        throw err;
+    } finally {
+        client.release();
+    }
+    return result
+}
+
+
+
 module.exports = {
     getAllUsers,
     getUserByEmail,
-    createUser
-    // updateUser,
+    createUser,
+    updateUser
 }
 // {
 //     "name": "Jorge"
@@ -68,21 +84,5 @@ module.exports = {
 //     "city": "madrid"
 // }
 
-
-// const updateUser = async (user_data) => { 
-//     const { name, surname, email_1, city, email_2  } = user_data;
-//     let client, result;
-//     try {
-//         client = await pool.connect(); // Espera a abrir conexion
-//         const data = await client.query(usersQueries.updateUser,[name, surname, email_1, city, email_2 ])
-//         result = data.rowCount
-//     } catch (err) {
-//         console.log(err);
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-//     return result
-// }
 
 

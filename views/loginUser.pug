@@ -13,9 +13,9 @@ html(lang="en")
                 img(src="/assets/logo.png", alt="logo" id="logoNav")
         main 
             h1 LOG IN 
-            form(action="" class="search-form" id="search-form")
-                input(type="email" placeholder="your email" name="user email")
-                input(type="password" placeholder="your password" name="user password") 
+            form(action="/users/auth/login" class="search-form" id="search-form" method="POST")
+                input(type="email" placeholder="your email" name="email")
+                input(type="password" placeholder="your password" name="password") 
                 input(type="submit" value="Enter" class="button") 
             div(class="parabtn-container")
                 h3 Don't you have an account yet?
