@@ -13,17 +13,17 @@ html(lang="en")
                 img(src="/assets/logo.png", alt="logo" id="logoNav")
         main 
             h1 SIGN UP 
-            form(action="/users/signup" class="signUp-form" id="signUp-form" onsubmit="return validateForm()")
+            form(action="/users/auth/signup" class="signUp-form" id="signUp-form" method="POST")
                 label Name:
-                input(type="text" placeholder="your name" name="user_name")
+                input(type="text" placeholder="your name" name="name")
                 label Surname:
-                input(type="text" placeholder="your surname" name="user_surname")
+                input(type="text" placeholder="your surname" name="surname")
                 label City:
-                input(type="text" placeholder="your city" name="user_city")
+                input(type="text" placeholder="your city" name="city")
                 label Email:
-                input(type="email" placeholder="your email" name="user_email")
+                input(type="email" placeholder="your email" name="email")
                 label Password:
-                input(type="password" placeholder="your password" name="user_password") 
+                input(type="password" placeholder="your password" name="password") 
                 label Reapeat your password:
                 input(type="password" placeholder="repeat password" name="repeat_password") 
                 input(type="submit" value="Enter" class="button") 

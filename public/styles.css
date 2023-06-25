@@ -66,6 +66,7 @@ footer {
 
 /* SEARCH FORM -------------------------------------------------------------- */
 .search-form {
+    margin: 5vw auto;
     margin: 4% 0;
     display: flex;
     flex-direction: column;

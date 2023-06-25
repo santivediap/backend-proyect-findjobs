@@ -2,7 +2,11 @@ const homeSearch =  (req, res) => {
     res.status(200).render("home_out.pug")
 }
 const userProfile = (req, res) => {
-    res.status(200).render("profile.pug")
+    res.status(200).render("profile.pug");
+
+
+
+    
 }
 const userFavorites = (req, res) => {
     res.status(200).render("userFavorites.pug")

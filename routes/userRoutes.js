@@ -6,7 +6,7 @@ const usersRouter = express.Router();
 usersRouter.get("/profile/:email", usersControllers.getUserByEmail);
 usersRouter.get("/", usersControllers.getAllUsers);
 usersRouter.post("/profile", usersControllers.createUser);
-usersRouter.post('/signup', usersControllers.signUpUser);
+usersRouter.post('/auth/signup', usersControllers.signUpUser);
 console.log('He pasado las rutas de users');
 // usersRouter.post('/login', usersControllers.loginUser);
 // usersRouter.get('/logout/:email', usersControllers.logout)
