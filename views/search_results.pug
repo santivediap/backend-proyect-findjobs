@@ -23,8 +23,8 @@ html(lang="en")
                             p #{position}
                             p #{location}
 
-                    each val in scrap
-                        article(class="article_offer")
+                    each val, valkey in scrap
+                        article(class="article_offer" id=valkey)
                             each valor, key in val
                                 if key == "error"
                                     h3 ERROR! #{valor}
