@@ -4,7 +4,7 @@ const viewController = require ('../controllers/viewControllers');
 const protectedRoutes = require ('../middlewares/verifiedToken');
 
 actionRouter.get('/', protectedRoutes, viewController.homeSearch);
-// actionRouter.get('/users/profile', protectedRoutes, viewController.userProfile);
+actionRouter.get('/users/profile', protectedRoutes, viewController.userProfile);
 // actionRouter.get('/user/favorites', viewController.userFavorites);
 // actionRouter.get('/search-results', viewController.searchResult);
 // actionRouter.post('/search-results', viewController.searchOffers);

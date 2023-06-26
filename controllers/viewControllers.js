@@ -11,24 +11,24 @@ const homeSearch =  (req, res) => {
         res.status(200).render("home_in.pug")
     }
 }
-// const userProfile = (req, res) => {
+const userProfile = (req, res) => {
 
-//     if(req.decoded == undefined) {
-//         res.clearCookie("access-token")
-//         res.redirect("/")
-//     } else {
-//         const { name, surname, email, city } = req.decoded;
+    if(req.decoded == undefined) {
+        res.clearCookie("access-token")
+        res.redirect("/")
+    } else {
+        const { name, surname, email, city } = req.decoded;
     
-//         console.log(req.decoded);
-//         res.status(200).render("profile.pug", {
-//             name: name,
-//             surname:surname,
-//             email: email,
-//             city: city
-//         });
-//     }
+        console.log(req.decoded);
+        res.status(200).render("profile.pug", {
+            name: name,
+            surname:surname,
+            email: email,
+            city: city
+        });
+    }
 
-// }
+}
 // const userFavorites = (req, res) => {
 //     res.status(200).render("userFavorites.pug")
 // }
@@ -98,7 +98,7 @@ const userLogin  = (req, res) => {
 
 module.exports = {
     homeSearch,
-    // userProfile,
+    userProfile,
     // userFavorites,
     // searchResult,
     userLogin

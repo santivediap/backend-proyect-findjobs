@@ -24,7 +24,7 @@ const viewsRoutes = require("./routes/viewsRoutes");
 // Rutas
 app.use("/users", userRoutes);
 // app.use("/admin", adminRoutes)
-// app.use("/favorites", favsRoutes);
+app.use("/favorites", favsRoutes);
 // app.use("/api", offersRoutes);
 
 
