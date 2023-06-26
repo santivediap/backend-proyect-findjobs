@@ -1,7 +1,5 @@
 const puppeteer = require("puppeteer");
 
-require('../puppeteer.config')
-
 const scrapOfferData = async (url) => {
 
     try {
