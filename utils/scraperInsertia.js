@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 
+require('../puppeteer.config')
+
 const scrapOfferData = async (url) => {
 
     try {
@@ -8,7 +10,7 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: true
+          headless: "new"
         });
 
         // Abrimos nueva pagina
@@ -36,7 +38,7 @@ const scrapOfferData = async (url) => {
     
         console.log("url capuradas",urls)
         // Me quedo con los 20 primeros productos, porque sino es muy largo
-        const urls2 = urls.slice(0, 4);
+        const urls2 = urls.slice(0, 1);
     
         // Filtramos los productos
         // Extraemos el dato de cada producto
