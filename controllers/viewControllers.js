@@ -85,9 +85,9 @@ const homeSearch =  (req, res) => {
 
 // }
 
-// const userLogin  = (req, res) => {
-//     res.status(200).render("loginUser.pug")
-// }
+const userLogin  = (req, res) => {
+    res.status(200).render("loginUser.pug")
+}
 // const userSignUp  = (req, res) => {
 //     res.status(200).render("createAccount.pug")
 // }
@@ -97,11 +97,11 @@ const homeSearch =  (req, res) => {
 // }
 
 module.exports = {
-    homeSearch
+    homeSearch,
     // userProfile,
     // userFavorites,
     // searchResult,
-    // userLogin,
+    userLogin
     // userSignUp,
     // searchOffers,
     // adminHome
