@@ -1,9 +1,9 @@
 const express = require('express');
 const actionRouter = express.Router(); 
 const viewController = require ('../controllers/viewControllers');
-// const protectedRoutes = require ('../middlewares/verifiedToken');
+const protectedRoutes = require ('../middlewares/verifiedToken');
 
-actionRouter.get('/', viewController.homeSearch);
+actionRouter.get('/', protectedRoutes, viewController.homeSearch);
 // actionRouter.get('/users/profile', protectedRoutes, viewController.userProfile);
 // actionRouter.get('/user/favorites', viewController.userFavorites);
 // actionRouter.get('/search-results', viewController.searchResult);
