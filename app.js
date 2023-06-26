@@ -19,7 +19,7 @@ app.use(cookieParser()); //Better access to cookies
 // const userRoutes = require("./routes/userRoutes");
 // const adminRoutes = require("./routes/adminRoutes");
 // const favsRoutes = require("./routes/favoritesRoutes");
-// const viewsRoutes = require("./routes/viewsRoutes");
+const viewsRoutes = require("./routes/viewsRoutes");
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -39,7 +39,7 @@ app.set("view engine", "pug"); // Template engine PUG
 app.set("views", "./views");
 
 //Rutas view PUG
-// app.use("/", viewsRoutes);
+app.use("/", viewsRoutes);
 
 //Public folder
 app.use(express.static("public"));
