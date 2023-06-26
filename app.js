@@ -28,10 +28,10 @@ app.get("/", (req, res) => {
 })
 
 // Rutas
-app.use("/users", userRoutes);
-app.use("/admin", adminRoutes)
-app.use("/favorites", favsRoutes);
-app.use("/api", offersRoutes);
+// app.use("/users", userRoutes);
+// app.use("/admin", adminRoutes)
+// app.use("/favorites", favsRoutes);
+// app.use("/api", offersRoutes);
 
 
 //   -----   PUG  ------------
@@ -39,7 +39,7 @@ app.set("view engine", "pug"); // Template engine PUG
 app.set("views", "./views");
 
 //Rutas view PUG
-app.use("/", viewsRoutes);
+// app.use("/", viewsRoutes);
 
 //Public folder
 app.use(express.static("public"));
