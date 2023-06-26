@@ -62,3 +62,36 @@ function searchJobs() {
 }
 
 searchJobs();
+
+//adding a job offer to favorites
+function addToFavorites() {
+  fetch(`/api/offers`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      body: JSON.stringify,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Job offer added to favorites:", data);
+    })
+    .catch((error) => {
+      console.log("Error adding job offer to favorites:", error);
+    });
+}
+
+//fetching and display favorites in user profile
+function displayFavorites() {
+  fetch("/favorites/dashboard")
+    .then((response) => response.json())
+    .then((data) => {
+      // Display the favorites data in your profile/favorites section
+      console.log("Favorites:", data);
+    })
+    .catch((error) => {
+      console.log("Error fetching favorites:", error);
+    });
+}
+
+displayFavorites();

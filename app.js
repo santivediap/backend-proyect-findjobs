@@ -14,8 +14,8 @@ const offersRoutes = require("./routes/offersRoutes");
 //const favsRoutes = require("./routes/favoritesRoutes");
 
 // Rutas
-app.use("/users", userRoutes);
-app.use("/favorites", favsRoutes);
+//app.use("/users", userRoutes);
+//app.use("/favorites", favsRoutes);
 app.use("/api", offersRoutes);
 
 //   -----  PUG  ------------
