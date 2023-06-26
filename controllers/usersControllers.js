@@ -27,64 +27,62 @@ const signUpUser = async(req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    try{
 
-const loginUser = async(req, res) => {
-    let data;
-    try {
-        const {email, password} = req.body;
-        console.log(email, password);
-        data = await users.getUserByEmail(email);
-        console.log(data);
+        const { email, password } = req.body
+    
+        const searchedUser = await users.getUserByEmail(email)
+    
+        console.log(searchedUser[0].password);
+        
+        const match = await bcrypt.compare(password, searchedUser[0].password);
+                if(match){
+                    await users.updateUser(true, email)
+                    const userForToken = {
+                        name: searchedUser[0].name,
+                        surname: searchedUser[0].surname,
+                        email: searchedUser[0].email,
+                        city: searchedUser[0].city
+                    };
+    
+                    console.log(searchedUser[0].name, searchedUser[0].email);
+    
+                    const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '10m'});
+    
+                    console.log(token);
+    
+                    res.status(200).cookie("access-token", token);
+                    res.redirect(`/users/profile?t=${token}`);
+                    
+                } else {
+                    res.json({
+                        "response": "ERROR!"
+                    })
+                }
 
-        if(!data){
-            res.status(400).json({ msg: 'Incorrect user or password'}); 
-        }else{
-            const match = await bcrypt.compare(password, data[0].password);
-            if(match){
-                let userLoggued = true;
-                await users.updateUser(userLoggued, data[0].email)
-                const userForToken = {
-                    email: data.email,
-                    name: data.name,
-                    surname: data.surname,
-                    city: data.city
-                };
-                const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '10m'});
-                console.log(token);
-                res.cookie("access-token", token, {
-                    httpOnly: true,
-                    sameSite: "strict",
-                });
-                res.redirect(`/users/profile?name=${data[0].name}&surname=${data[0].surname}&email=${data[0].email}&city=${data[0].city}`);
-                // res.redirect(`/users/profile?t=${token}`);
-                console.log('cookie realizada');
-                
-                
-                
-            }else {
-                res.status(400).json({ msg: 'Incorrect user or password'});
-            }
-        }        
-    } catch (error) {
-        console.log('Error:', error);
-    }
-};
-
-
-
-const logout = async(req, res) => {
-    let data;
-    let logged = false;
-    try {
-        data = await users.updateUser(logged, req.params.email );
-        res.redirect(`/`);
-        console.log('usuario fuera de sesión');
     } catch (error) {
         console.log('Error:', error);
     }
 }
 
 
+
+const logout = async(req, res) => {
+
+    const { email } = req.decoded;
+
+    let data;
+    let logged = false;
+    try {
+        data = await users.updateUser(logged, email);
+        res.clearCookie("access-token")
+        res.redirect(`/`);
+        console.log('Usuario fuera de sesión');
+    } catch (error) {
+        console.log('Error:', error);
+    }
+}
 
 
 const getAllUsers = async (req, res) => {
@@ -113,7 +111,6 @@ const createUser = async (req, res) => {
         data: dataUser
     });
 }
-
 
 
 module.exports = {

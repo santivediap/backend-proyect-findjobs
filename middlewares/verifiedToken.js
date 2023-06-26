@@ -1,24 +1,25 @@
-// const express = require('express');
-const jwt = require('jsonwebtoken');
 const User = require('../models/usersModels');
-const jwt_secret = process.env.ULTRA_SECRET_KEY;
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const jwt_secret = "tortilla";
 
-const verifyUser = async (req, res, next) => {
-    const token = req.headers['access_token'];
+const protectedRoutes = express.Router();
 
-    console.log("PASO 1");
+protectedRoutes.use((req, res, next) => {
+    const token = req.headers.cookie;
+    const cookie = token.split("=")
 
     if (token) {
-      jwt.verify(token, jwt_secret, async (err, decoded) => {
-        console.log('PASO 2');
-        if(err) {
-            console.log(err);
-        }
+      jwt.verify(cookie[1], jwt_secret, async (err, decoded) => {
+        console.log(decoded);
+        let data = await User.getUserByEmail(decoded.email)
 
-        let data = await User.getUserByEmail(decoded.email);
-        console.log(decoded.email);
-        if (data.logged == true) {
-          req.decoded = decoded;    
+        console.log(data);
+
+        if (data[0].logged === true) {
+          req.decoded = decoded;
+          
+          console.log(`LOG: ${req.decoded}`);
           next();   
         } else {
           return res.json({ msg: 'Invalid token' });
@@ -29,6 +30,6 @@ const verifyUser = async (req, res, next) => {
           msg: 'Token not provided' 
       });
     }
- };
+ });
 
-module.exports = verifyUser;
+module.exports = protectedRoutes;

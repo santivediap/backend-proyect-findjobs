@@ -4,16 +4,13 @@ const homeSearch =  (req, res) => {
     res.status(200).render("home_out.pug")
 }
 const userProfile = (req, res) => {
-    // const { t } = req.query;
-    // const { name, surname, email, city } = req.decoded;
-    const { name, surname, email, city } = req.query;
+    const { name, surname, email, city } = req.decoded;
     console.log(req.decoded);
-    
     res.status(200).render("profile.pug", {
-        "name": name,
-        "surname":surname,
-        "email": email,
-        "city": city
+        name: name,
+        surname:surname,
+        email: email,
+        city: city
     });
 }
 const userFavorites = (req, res) => {
