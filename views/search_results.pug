@@ -18,10 +18,50 @@ html(lang="en")
                         input(type="text" placeholder="City" name="location") 
                         input(type="submit" value="Search" class="button") 
                     div(class="search_info")
-                        h3 These are the results for 
+                        h3 These are the results for
                         div(id="search_inputValues")
-                            p #{input_value_position} Full Stack
-                            p #{input_value_location} Madrid
-                    include ./offersCards
+                            p #{position}
+                            p #{location}
+
+                    each val in scrap
+                        article(class="article_offer")
+                            each valor, key in val
+                                if key == "error"
+                                    h3 ERROR! #{valor}
+
+                                if key == "title"
+                                    h3 #{valor}
+
+                                if key == "companyName"
+                                    h3 #{valor}
+                                
+                                div(class="dataOffer")
+                                    if key == "location"
+                                        div(class="dataOfferItem") 
+                                            p Ubicación: 
+                                            p #{valor}
+                                    
+                                    if key == "experience"
+                                        div(class="dataOfferItem")
+                                        p Experiencia: 
+                                        p #{valor} 2 años
+                                    
+                                    if key == "contract_type"
+                                        div(class="dataOfferItem")
+                                        p Tipo de contrato: 
+                                        p #{valor}
+
+                                    if key == "work_schedule"
+                                        div(class="dataOfferItem")
+                                            p Jornada: 
+                                            p #{valor}
+                                    
+                                    if key == "salary"
+                                        div(class="dataOfferItem")
+                                            p Salario: 
+                                            p #{valor}
+
+                                    if key == "description"
+                                        p Descripción: #{valor}
         include ./footer.pug
 
