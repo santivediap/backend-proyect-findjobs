@@ -88,9 +88,9 @@ const userProfile = (req, res) => {
 const userLogin  = (req, res) => {
     res.status(200).render("loginUser.pug")
 }
-// const userSignUp  = (req, res) => {
-//     res.status(200).render("createAccount.pug")
-// }
+const userSignUp  = (req, res) => {
+    res.status(200).render("createAccount.pug")
+}
 
 // const adminHome = (req,res) => {
 //     res.status(200).render("admin_home.pug")
@@ -101,8 +101,8 @@ module.exports = {
     userProfile,
     // userFavorites,
     // searchResult,
-    userLogin
-    // userSignUp,
+    userLogin,
+    userSignUp
     // searchOffers,
     // adminHome
 }
