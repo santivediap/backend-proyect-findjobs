@@ -18,7 +18,7 @@ app.use(cookieParser()); //Better access to cookies
 // const offersRoutes = require("./routes/offersRoutes");
 const userRoutes = require("./routes/userRoutes");
 // const adminRoutes = require("./routes/adminRoutes");
-// const favsRoutes = require("./routes/favoritesRoutes");
+const favsRoutes = require("./routes/favoritesRoutes");
 const viewsRoutes = require("./routes/viewsRoutes");
 
 // Rutas
