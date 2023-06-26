@@ -21,11 +21,13 @@ app.use(cookieParser()); //Better access to cookies
 const apiSearchRouter = require('./routes/apiSearchRoutes')
 const offersRoutes = require("./routes/offersRoutes");
 const userRoutes = require("./routes/userRoutes");
+const adminRoutes = require("./routes/adminRoutes")
 const favsRoutes = require("./routes/favoritesRoutes");
 const viewsRoutes = require("./routes/viewsRoutes");
 
 // Rutas
 app.use("/users", userRoutes);
+// app.use("/admin", adminRoutes)
 app.use("/favorites", favsRoutes);
 app.use("/api", offersRoutes);
 

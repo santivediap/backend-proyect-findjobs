@@ -6,6 +6,7 @@ CREATE TABLE users (
   email VARCHAR(60) UNIQUE, 
   city VARCHAR(30),
   password VARCHAR(100),
+  role VARCHAR(10),
   logged BOOLEAN
 );
 

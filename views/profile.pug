@@ -12,12 +12,13 @@ html(lang="en")
         main
             section 
                 h1 YOUR PROFILE
-                p(Class="objectKey") Name
-                p(Class="objectValue") #{name}
-                p(Class="objectKey") Surname
-                p(Class="objectValue") #{surname}
-                p(Class="objectKey") Email
-                p(Class="objectValue") #{email}
-                p(Class="objectKey") City
-                p(Class="objectValue") #{city}
+                div(class="profile_info")
+                    p(Class="objectKey") Name
+                    p(Class="objectValue") #{name}
+                    p(Class="objectKey") Surname
+                    p(Class="objectValue") #{surname}
+                    p(Class="objectKey") Email
+                    p(Class="objectValue") #{email}
+                    p(Class="objectKey") City
+                    p(Class="objectValue") #{city}
         include ./footer.pug
