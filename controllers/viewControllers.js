@@ -75,15 +75,15 @@ const userFavorites = (req, res) => {
 //     }
 // }
 
-// const searchOffers = async (req, res) => {
+const searchOffers = async (req, res) => {
 
-//     try {
-//         await res.redirect(`/search-results?position=${req.body.position}&location=${req.body.location}`)
-//     } catch (err) {
-//         console.log(err);
-//     }
+    try {
+        await res.redirect(`/search-results?position=${req.body.position}&location=${req.body.location}`)
+    } catch (err) {
+        console.log(err);
+    }
 
-// }
+}
 
 const userLogin  = (req, res) => {
     res.status(200).render("loginUser.pug")
@@ -102,7 +102,7 @@ module.exports = {
     userFavorites,
     // searchResult,
     userLogin,
-    userSignUp
-    // searchOffers,
+    userSignUp,
+    searchOffers
     // adminHome
 }
