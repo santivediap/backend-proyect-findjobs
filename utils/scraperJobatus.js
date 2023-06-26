@@ -20,8 +20,6 @@ const scrapOfferData = async (url) => {
         await page.goto(url, {
           waitUntil: "networkidle2",
         });
-        
-        await page.waitForTimeout(2000);
 
         const jobOffer = await page.$(".result.mt-2 > .row > .col-md-12 > .jobtitle > a.out")
 
@@ -86,26 +84,26 @@ const extractProductData = async (url,browser) => {
 
                 switch (fixedData[0]) {
                     case "Empresa":
-                        offerData[fixedData[0]] = fixedData[1]
+                        offerData["companyName"] = fixedData[1]
                         break;
 
                     case "Localidad":
-                        offerData["Ubicación"] = fixedData[1]
+                        offerData["location"] = fixedData[1]
                         break;
 
                     case "Tipo de Contrato":
-                        offerData["Contrato"] = fixedData[1]
+                        offerData["contract_type"] = fixedData[1]
                         break;
 
                     case "Salario":
-                        offerData[fixedData[0]] = fixedData[1]
+                        offerData["salary"] = fixedData[1]
                         break;
                 }
             }
 
-            const {Empresa, Ubicación, Contrato, Salario} = offerData
+            const {companyName, location, contract_type, salary} = offerData
 
-            const finalData = {Ubicación, Empresa, Contrato, Salario}
+            const finalData = {location, companyName, contract_type, salary}
 
             return finalData
         })
@@ -113,7 +111,7 @@ const extractProductData = async (url,browser) => {
         const jobDescriptionData = page.$eval("#description_body", data => {
             let offerData = {}
 
-            offerData["Descripción"] = data.innerText
+            offerData["description"] = data.innerText
 
             return offerData
         })
@@ -121,7 +119,7 @@ const extractProductData = async (url,browser) => {
         const jobTitleData = page.$eval("#offer_title", data => {
             let offerData = {}
 
-            offerData["Título"] = data.innerText
+            offerData["title"] = data.innerText
 
             return offerData
         })

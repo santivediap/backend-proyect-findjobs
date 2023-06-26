@@ -43,10 +43,11 @@ const loginUser = async (req, res) => {
                         name: searchedUser[0].name,
                         surname: searchedUser[0].surname,
                         email: searchedUser[0].email,
-                        city: searchedUser[0].city
+                        city: searchedUser[0].city,
+                        role: searchedUser[0].role
                     };
     
-                    console.log(searchedUser[0].name, searchedUser[0].email);
+                    console.log(searchedUser[0].name, searchedUser[0].email, searchedUser[0].role);
     
                     const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '10m'});
     
