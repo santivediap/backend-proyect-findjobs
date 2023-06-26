@@ -24,7 +24,7 @@
     "nodemailer": "^6.9.3",
     "pg": "^8.11.0",
     "pug": "^3.0.2",
-    "puppeteer": "^20.7.3"
+    "puppeteer": "18.1"
   },
   "devDependencies": {
     "jsdoc": "^4.0.2",
