@@ -10,7 +10,7 @@ actionRouter.get('/user/favorites', viewController.userFavorites);
 // actionRouter.post('/search-results', viewController.searchOffers);
 actionRouter.get('/user-login', viewController.userLogin);
 actionRouter.get('/create-account', viewController.userSignUp);
-// actionRouter.get('/home', viewController.adminHome);
+actionRouter.get('/home', viewController.adminHome);
 
 
 module.exports = actionRouter;
