@@ -6,9 +6,8 @@ menuUl.setAttribute('class','menu_ul');
 if(menuIcon){
   menuIcon.addEventListener('click', () => {
     const menuItems = `
-    <li><a href="drivers.html">FAVORITES</a></li>
-    <li><a href="home.html">USERS</a></li>
-    <li><a href="resultados.html">DASHBOARD</a></li>
+    <li><a href="/user/favorites">FAVORITES</a></li>
+    <li><a href="/">SEARCH</a></li>
   `;
   if (menuUl.style.display === 'none') {
     setTimeout(function() {
@@ -16,7 +15,7 @@ if(menuIcon){
     }, 100);
     menuUl.style.display = 'flex';
     menu.style.borderTop = 'solid';
-    menu.style.borderTopColor = 'rgb(203, 25, 25)';
+    menu.style.borderTopColor = '#00D09C';
   } else {
     menuUl.style.display = 'none';
     menu.style.borderTop = 'none';
@@ -25,6 +24,13 @@ if(menuIcon){
   menuUl.innerHTML= menuItems;
   });
 }
+
+
+// if (menuIcon) {
+//   menuIcon.addEventListener("click", () => {
+//     showNavbarItems();
+//   });
+// }
 
 function validateSearch(event) {
         if(/^([a-zA-Z\s-]+)/gm.test(event.target.position.value) == true && /^([a-zA-Z\s-]+)/gm.test(event.target.location.value) == true) {
