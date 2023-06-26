@@ -3,11 +3,11 @@ const express = require('express');
 require('dotenv').config();
 const morgan = require('./utils/morgan');
 const error404 = require('./middlewares/error404')
+const cookieParser = require("cookie-parser");
 
 
 
 // const bodyParser = require('body-parser');
-
 
 const app = express();
 const port = "3000";
@@ -15,6 +15,7 @@ const port = "3000";
 app.use(express.json()); // Habilitar tipo de dato a recibir
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser()); //Better access to cookies
 
 // llamadas a carpeta ROUTES
 const apiSearchRouter = require('./routes/apiSearchRoutes')
@@ -27,6 +28,7 @@ const viewsRoutes = require("./routes/viewsRoutes");
 app.use("/users", userRoutes);
 app.use("/favorites", favsRoutes);
 app.use("/api", offersRoutes);
+
 
 //   -----   PUG  ------------
 app.set("view engine", "pug"); // Template engine PUG
