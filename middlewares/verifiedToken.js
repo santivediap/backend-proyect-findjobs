@@ -6,11 +6,11 @@ const jwt_secret = "tortilla";
 const protectedRoutes = express.Router();
 
 protectedRoutes.use((req, res, next) => {
-    const token = req.headers.cookie;
-    const cookie = token.split("=")
-
+    // const token = req.headers.cookie;
+    // const cookie = token.split("=")
+    const token = req.cookies['access-token']  
     if (token) {
-      jwt.verify(cookie[1], jwt_secret, async (err, decoded) => {
+      jwt.verify(token, jwt_secret, async (err, decoded) => {
         console.log(decoded);
         let data = await User.getUserByEmail(decoded.email)
 
