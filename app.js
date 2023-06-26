@@ -15,11 +15,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); //Better access to cookies
 
 // llamadas a carpeta ROUTES
-const offersRoutes = require("./routes/offersRoutes");
-const userRoutes = require("./routes/userRoutes");
-const adminRoutes = require("./routes/adminRoutes");
-const favsRoutes = require("./routes/favoritesRoutes");
-const viewsRoutes = require("./routes/viewsRoutes");
+// const offersRoutes = require("./routes/offersRoutes");
+// const userRoutes = require("./routes/userRoutes");
+// const adminRoutes = require("./routes/adminRoutes");
+// const favsRoutes = require("./routes/favoritesRoutes");
+// const viewsRoutes = require("./routes/viewsRoutes");
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    "message": "HOLA"
+  })
+})
 
 // Rutas
 app.use("/users", userRoutes);
