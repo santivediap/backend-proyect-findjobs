@@ -92,6 +92,10 @@ const userSignUp  = (req, res) => {
     res.status(200).render("createAccount.pug")
 }
 
+const adminHome = (req,res) => {
+    res.status(200).render("admin_home.pug")
+}
+
 module.exports = {
     homeSearch,
     userProfile,
@@ -99,6 +103,6 @@ module.exports = {
     searchResult,
     userLogin,
     userSignUp,
-    searchOffers
-
+    searchOffers,
+    adminHome
 }

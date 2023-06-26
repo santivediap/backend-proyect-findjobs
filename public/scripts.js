@@ -26,12 +26,6 @@ if(menuIcon){
 }
 
 
-// if (menuIcon) {
-//   menuIcon.addEventListener("click", () => {
-//     showNavbarItems();
-//   });
-// }
-
 function validateSearch(event) {
         if(/^([a-zA-Z\s-]+)/gm.test(event.target.position.value) == true && /^([a-zA-Z\s-]+)/gm.test(event.target.location.value) == true) {
             return true;

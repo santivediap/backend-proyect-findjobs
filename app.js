@@ -5,8 +5,6 @@ const morgan = require('./utils/morgan');
 const error404 = require('./middlewares/error404')
 const cookieParser = require("cookie-parser");
 
-
-
 // const bodyParser = require('body-parser');
 
 const app = express();
@@ -18,16 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); //Better access to cookies
 
 // llamadas a carpeta ROUTES
-const apiSearchRouter = require('./routes/apiSearchRoutes')
 const offersRoutes = require("./routes/offersRoutes");
 const userRoutes = require("./routes/userRoutes");
-const adminRoutes = require("./routes/adminRoutes")
+const adminRoutes = require("./routes/adminRoutes");
 const favsRoutes = require("./routes/favoritesRoutes");
 const viewsRoutes = require("./routes/viewsRoutes");
 
 // Rutas
 app.use("/users", userRoutes);
-// app.use("/admin", adminRoutes)
+app.use("/admin", adminRoutes)
 app.use("/favorites", favsRoutes);
 app.use("/api", offersRoutes);
 
