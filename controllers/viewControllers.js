@@ -29,9 +29,9 @@ const userProfile = (req, res) => {
     }
 
 }
-// const userFavorites = (req, res) => {
-//     res.status(200).render("userFavorites.pug")
-// }
+const userFavorites = (req, res) => {
+    res.status(200).render("userFavorites.pug")
+}
 
 // const searchResult = async (req, res) => {
 
@@ -99,7 +99,7 @@ const userSignUp  = (req, res) => {
 module.exports = {
     homeSearch,
     userProfile,
-    // userFavorites,
+    userFavorites,
     // searchResult,
     userLogin,
     userSignUp
