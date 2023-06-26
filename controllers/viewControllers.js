@@ -38,8 +38,8 @@ const searchResult = async (req, res) => {
     let locationRegex = new RegExp(`${req.query.location}`)
     let titleRegex = new RegExp(`${req.query.position}`)
 
-    // let insertiaResults = await scraperInsertia.scrapOfferData(`https://www.insertia.net/trabajo-de-${req.query.position.toLowerCase()}/${req.query.location.toLowerCase()}-${req.query.location.toLowerCase()}`)
-    //             .then(insertia => insertia)
+    let insertiaResults = await scraperInsertia.scrapOfferData(`https://www.insertia.net/trabajo-de-${req.query.position.toLowerCase()}/${req.query.location.toLowerCase()}-${req.query.location.toLowerCase()}`)
+                .then(insertia => insertia)
 
     // let jobatusResults = await scraperJobatus.scrapOfferData(`https://www.jobatus.es/trabajo?q=${req.query.position}&l=${req.query.location}&jb=all&sort=&d=&page=1`)
     //             .then(jobatus => jobatus)

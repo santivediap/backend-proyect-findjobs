@@ -8,9 +8,7 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: false,
-          defaultViewport: null,
-          args: ["--start-maximized"],
+          headless: true
         });
 
         // Abrimos nueva pagina
