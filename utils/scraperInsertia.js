@@ -8,8 +8,12 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: false
+            headless: false,
+            executablePath: "/usr/bin/chromium-browser",
+            args: ['--no-sandbox']
         });
+
+        console.log("ESTOY HACIENDO SCRAPPING!!!");
 
         // Abrimos nueva pagina
         const page = await browser.newPage();
