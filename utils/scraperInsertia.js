@@ -10,7 +10,7 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: "new"
+          headless: false
         });
 
         // Abrimos nueva pagina
