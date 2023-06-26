@@ -8,7 +8,7 @@ actionRouter.get('/', protectedRoutes, viewController.homeSearch);
 // actionRouter.get('/user/favorites', viewController.userFavorites);
 // actionRouter.get('/search-results', viewController.searchResult);
 // actionRouter.post('/search-results', viewController.searchOffers);
-// actionRouter.get('/user-login', viewController.userLogin);
+actionRouter.get('/user-login', viewController.userLogin);
 // actionRouter.get('/create-account', viewController.userSignUp);
 // actionRouter.get('/home', viewController.adminHome);
 
