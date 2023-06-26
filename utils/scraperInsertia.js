@@ -38,7 +38,7 @@ const scrapOfferData = async (url) => {
     
         console.log("url capuradas",urls)
         // Me quedo con los 20 primeros productos, porque sino es muy largo
-        const urls2 = urls.slice(0, 5);
+        const urls2 = urls.slice(0, 4);
     
         // Filtramos los productos
         // Extraemos el dato de cada producto
@@ -85,19 +85,19 @@ const extractProductData = async (url,browser) => {
 
                 switch (fixedData[0]) {
                     case "Experiencia mínima":
-                        offerData["Experiencia"] = fixedData[1]
+                        offerData["experience"] = fixedData[1]
                         break;
 
                     case "Tipo de contrato":
-                        offerData["Contrato"] = fixedData[1]
+                        offerData["contract_type"] = fixedData[1]
                         break;
 
                     case "Jornada laboral":
-                        offerData["Jornada"] = fixedData[1]
+                        offerData["work_schedule"] = fixedData[1]
                         break;
 
                     case "Salario":
-                        offerData[fixedData[0]] = fixedData[1]
+                        offerData["salary"] = fixedData[1]
                         break;
                 }
             }
@@ -108,7 +108,7 @@ const extractProductData = async (url,browser) => {
         const jobDescriptionData = page.$eval(".careerfy-content-with-more", data => {
             let offerData = {}
 
-            offerData["Descripción"] = data.innerText
+            offerData["description"] = data.innerText
 
             return offerData
         })
@@ -116,7 +116,7 @@ const extractProductData = async (url,browser) => {
         const jobTitleData = page.$eval(".font-weight-bold", data => {
             let offerData = {}
 
-            offerData["Título"] = data.innerText
+            offerData["title"] = data.innerText
 
             return offerData
         })
@@ -124,7 +124,7 @@ const extractProductData = async (url,browser) => {
         const jobLocationData = page.$eval(".careerfy-jobdetail-options.pl-0.mt-2 > li > a", data => {
             let offerData = {}
 
-            offerData["Ubicación"] = data.innerText.trim()
+            offerData["location"] = data.innerText.trim()
 
             return offerData
         })
@@ -147,7 +147,7 @@ const extractProductData = async (url,browser) => {
             const jobCompanyNameData = page.$eval("a[style='color: #f16421']", data => {
                 let offerData = {}
     
-                offerData["Empresa"] = data.innerText.trim()
+                offerData["companyName"] = data.innerText.trim()
     
                 return offerData
             })
