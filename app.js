@@ -21,12 +21,6 @@ app.use(cookieParser()); //Better access to cookies
 // const favsRoutes = require("./routes/favoritesRoutes");
 const viewsRoutes = require("./routes/viewsRoutes");
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    "message": "HOLA"
-  })
-})
-
 // Rutas
 // app.use("/users", userRoutes);
 // app.use("/admin", adminRoutes)
