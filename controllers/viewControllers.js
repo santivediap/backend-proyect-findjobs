@@ -3,17 +3,31 @@ const scraperJobatus = require('../utils/scraperJobatus')
 const Offer = require("../models/offers");
 
 const homeSearch =  (req, res) => {
-    res.status(200).render("home_out.pug")
+    console.log(req.decoded);
+
+    if(req.decoded == null) {
+        res.status(200).render("home_out.pug")
+    } else {
+        res.status(200).render("home_in.pug")
+    }
 }
 const userProfile = (req, res) => {
-    const { name, surname, email, city } = req.decoded;
-    console.log(req.decoded);
-    res.status(200).render("profile.pug", {
-        name: name,
-        surname:surname,
-        email: email,
-        city: city
-    });
+
+    if(req.decoded == undefined) {
+        res.clearCookie("access-token")
+        res.redirect("/")
+    } else {
+        const { name, surname, email, city } = req.decoded;
+    
+        console.log(req.decoded);
+        res.status(200).render("profile.pug", {
+            name: name,
+            surname:surname,
+            email: email,
+            city: city
+        });
+    }
+
 }
 const userFavorites = (req, res) => {
     res.status(200).render("userFavorites.pug")
