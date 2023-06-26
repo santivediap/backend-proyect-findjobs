@@ -1,4 +1,4 @@
-// const scraperInsertia = require('../utils/scraperInsertia')
+const scraperInsertia = require('../utils/scraperInsertia')
 // const scraperJobatus = require('../utils/scraperJobatus')
 const Offer = require("../models/offers");
 
@@ -48,9 +48,9 @@ const searchResult = async (req, res) => {
                 
     const result = [];
 
-    // if(insertiaResults != null) {
-    //     result.push(...insertiaResults)
-    // }
+    if(insertiaResults != null) {
+        result.push(...insertiaResults)
+    }
 
     // if(jobatusResults != null) {
     //     result.push(...jobatusResults)
