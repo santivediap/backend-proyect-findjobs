@@ -9,8 +9,9 @@ html(lang="en")
         link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
         header
-            nav 
-                img(src="/assets/logo.png", alt="logo" id="logoNav")
+            nav
+                a(href="/") 
+                    img(src="/assets/logo.png", alt="logo" id="logoNav")
         main 
             h1 SIGN UP 
             form(action="/users/auth/signup" class="signUp-form" id="signUp-form" method="POST")

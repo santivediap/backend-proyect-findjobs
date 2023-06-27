@@ -11,8 +11,7 @@ html(lang="en")
         include ./header_in.pug
         main
             section 
-                h1 MY FAVORITE JOB OFFERS
-                article 
+                article.search-results
                     form(action="" class="search-form" id="search-form")
                         input(type="text" placeholder="Position" name="position")
                         input(type="text" placeholder="City" name="location") 
@@ -25,45 +24,48 @@ html(lang="en")
 
                     each val, valkey in scrap
                         article(class="article_offer" id=valkey)
-                            each valor, key in val
-                                if key == "error"
-                                    h3 ERROR! #{valor}
+                            div(class="dataOffer")
+                                each valor, key in val
+                                    if key == "error"
+                                        h3 ERROR! #{valor}
 
-                                if key == "title"
-                                    h3 #{valor}
+                                    if key == "title"
+                                        h2 #{valor}
 
-                                if key == "companyName"
-                                    h3 #{valor}
-                                
-                                div(class="dataOffer")
+                                    if key == "companyName"
+                                        div(class="companyContainer")
+                                            div(class="companyImage")
+                                                img(src="/assets/edificio-de-oficinas.png", alt="companyImage")
+                                            p #{valor}
+                                    
                                     if key == "location"
-                                        div(class="dataOfferItem") 
-                                            p Ubicación: 
+                                        div(class="locationContainer")
+                                            div(class="companyImage")
+                                                img(src="/assets/edificio-de-oficinas.png", alt="companyImage")
                                             p #{valor}
                                     
-                                    if key == "experience"
-                                        div(class="dataOfferItem")
-                                        p Experiencia: 
-                                        p #{valor}
+                                    //- if key == "experience"
+                                    //-     div(class="dataOfferItem")
+                                    //-     p Experiencia: 
+                                    //-     p #{valor} 2 años
                                     
-                                    if key == "contract_type"
-                                        div(class="dataOfferItem")
-                                        p Tipo de contrato: 
-                                        p #{valor}
+                                    //- if key == "contract_type"
+                                    //-     div(class="dataOfferItem")
+                                    //-     p Tipo de contrato: 
+                                    //-     p #{valor}
 
-                                    if key == "work_schedule"
-                                        div(class="dataOfferItem")
-                                            p Jornada: 
-                                            p #{valor}
+                                    //- if key == "work_schedule"
+                                    //-     div(class="dataOfferItem")
+                                    //-         p Jornada: 
+                                    //-         p #{valor}
                                     
-                                    if key == "salary"
-                                        div(class="dataOfferItem")
-                                            p Salario: 
-                                            p #{valor}
+                                    //- if key == "salary"
+                                    //-     div(class="dataOfferItem")
+                                    //-         p Salario: 
+                                    //-         p #{valor}
 
-                                    if key == "description"
-                                        p Descripción: #{valor}
-            
+                                    //- if key == "description"
+                                    //-     p Descripción: #{valor}
         include ./footer.pug
         script(src="../scripts.js")
 
