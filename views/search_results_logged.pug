@@ -1,0 +1,69 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title SEARCHED OFFERS
+        link(rel="stylesheet" href=" ../styles.css")
+        link(rel="icon" type="image/x-icon" href="/assets/logo.png")
+    body
+        include ./header_in.pug
+        main
+            section 
+                h1 MY FAVORITE JOB OFFERS
+                article 
+                    form(action="" class="search-form" id="search-form")
+                        input(type="text" placeholder="Position" name="position")
+                        input(type="text" placeholder="City" name="location") 
+                        input(type="submit" value="Search" class="button")  
+                    div(class="search_info")
+                        h3 These are the results for
+                        div(id="search_inputValues")
+                            p #{position}
+                            p #{location}
+
+                    each val, valkey in scrap
+                        article(class="article_offer" id=valkey)
+                            button(id=valkey) Favorite 
+                            each valor, key in val
+                                if key == "error"
+                                    h3 ERROR! #{valor}
+
+                                if key == "title"
+                                    h3#title #{valor}
+
+                                if key == "companyName"
+                                    h3#companyName #{valor}
+                                
+                                div(class="dataOffer")
+                                    if key == "location"
+                                        div(class="dataOfferItem") 
+                                            p Ubicación: 
+                                            p#location #{valor}
+                                    
+                                    if key == "experience"
+                                        div(class="dataOfferItem")
+                                        p Experiencia: 
+                                        p#experience #{valor} 2 años
+                                    
+                                    if key == "contract_type"
+                                        div(class="dataOfferItem")
+                                        p Tipo de contrato: 
+                                        p#contract_type #{valor}
+
+                                    if key == "work_schedule"
+                                        div(class="dataOfferItem")
+                                            p Jornada: 
+                                            p#work_schedule #{valor}
+                                    
+                                    if key == "salary"
+                                        div(class="dataOfferItem")
+                                            p Salario: 
+                                            p#salary #{valor}
+
+                                    if key == "description"
+                                        p#description Descripción: #{valor}
+        include ./footer.pug
+    script(src="../scripts.js") 
+
