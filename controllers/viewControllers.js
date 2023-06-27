@@ -1,9 +1,15 @@
 const scraperInsertia = require('../utils/scraperInsertia')
 const scraperJobatus = require('../utils/scraperJobatus')
 const Offer = require("../models/offers");
+const users = require("../models/usersModels");
+const favs = require("../models/favoritesModels");
 
 const homeSearch =  (req, res) => {
-    res.status(200).render("home_out.pug")
+    if(req.decoded == null) {
+        res.status(200).render("home_out.pug")
+    } else {
+        res.status(200).render("home_in.pug")
+    }
 }
 const userProfile = (req, res) => {
     const { name, surname, email, city } = req.decoded;
@@ -15,9 +21,21 @@ const userProfile = (req, res) => {
         city: city
     });
 }
-const userFavorites = (req, res) => {
-    res.status(200).render("userFavorites.pug")
-}
+const userFavorites = async (req, res) => {
+    console.log("FAVORITOS!");
+  
+    console.log(req.decoded.email);
+    // console.log(searchedUser[0].user_id);
+    const searchedUser = await users.getUserByEmail(req.decoded.email);
+    console.log(searchedUser[0].email);
+    const favoritesList = await favs.getAllFavorites(searchedUser[0].email);
+  
+    console.log(favoritesList);
+  
+    res.status(200).render("userFavorites", {
+      scrap: favoritesList,
+    });
+  };
 
 const searchResult = async (req, res) => {
   console.log("USER BUSCA");
@@ -84,6 +102,18 @@ const searchResult = async (req, res) => {
   }
 };
 
+const adminHome = async (req,res) => {
+    try{
+        let adminOffers = await offersControllers.getOffers();
+        res.status(200).render("admin_home.pug", {
+            "Offers": adminOffers
+        })
+    }catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+}
+
 const searchOffers = async (req, res) => {
   try {
     await res.redirect(
@@ -108,8 +138,8 @@ module.exports = {
     userProfile,
     userFavorites,
     searchResult,
-    userLogin,
     userSignUp,
-    searchOffers
-
+    searchOffers,
+    adminHome,
+    userLogin
 }
