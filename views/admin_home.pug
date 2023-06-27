@@ -8,24 +8,72 @@ html(lang="en")
         link(rel="stylesheet" href=" ../styles.css")
         link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
+        header    
+            nav                      
+                img(src="/assets/ham_menu.png", alt="menu",  class="header_icons", id="menu_icon")
+                a.button(href="/users/logout" id="logOutButton" class="button") LOG OUT
+    div(id="menu") 
         main
-            h1 HELLO ADMIN
-            form(action="" method="POST")
-                label Offer Title: 
-                input(type="text" name="")
-                label Company name: 
-                input(type="text" name="")
-                label Location: 
-                input(type="text" name="")
-                label Experience required: 
-                input(type="text" name="")
-                label Contract Type: 
-                input(type="text" name="")
-                label Work schedule: 
-                input(type="text" name="")
-                label Salary: 
-                input(type="text" name="")
-                label Description: 
-                input(type="text" name="")
+            section
+                h1 HELLO ADMIN
+                form(action="/api/offers" class="signUp-form" method="POST")
+                    label Offer Title: 
+                    input(type="text" name="title")
+                    label Company name: 
+                    input(type="text" name="companyName")
+                    label Location: 
+                    input(type="text" name="location")
+                    label Experience required: 
+                    input(type="text" name="experience")
+                    label Contract Type: 
+                    input(type="text" name="contract_type")
+                    label Work schedule: 
+                    input(type="text" name="work_schedule")
+                    label Salary: 
+                    input(type="text" name="salary")
+                    label Description: 
+                    textarea(name="description", cols="40", rows="20") 
+                    input(type="submit" value="Create Offer" class="button") 
+            section 
+                    each object in Offers
+                        article(class="article_offer")
+                            each valor, key in object
+                                if key == "error"
+                                    h3 ERROR! #{valor}
+
+                                if key == "title"
+                                    h3 #{valor}
+
+                                if key == "companyName"
+                                    h3 #{valor}
+
+                                div(class="dataOffer")
+                                    if key == "location"
+                                        div(class="dataOfferItem") 
+                                            p Location: 
+                                            p #{valor}
+                                    
+                                    if key == "experience"
+                                        div(class="dataOfferItem")
+                                        p Experiencia: 
+                                        p #{valor} 
+                                    
+                                    if key == "contract_type"
+                                        div(class="dataOfferItem")
+                                        p Tipo de contrato: 
+                                        p #{valor}
+
+                                    if key == "work_schedule"
+                                        div(class="dataOfferItem")
+                                            p Jornada: 
+                                            p #{valor}
+                                    
+                                    if key == "salary"
+                                        div(class="dataOfferItem")
+                                            p Salario: 
+                                            p #{valor}
+
+                                    if key == "description"
+                                        p Descripción: #{valor}
         include ./footer
                 

@@ -1,14 +1,14 @@
 const Offer = require("../models/offers");
 
-// GET -> http://localhost:3000/api/search
+// GET -> http://localhost:3000/api/dashboard
 // Obtiene todas las ofertas de trabajo de la BBDD
 const getOffers = async (req, res) => {
   try {
     const offers = await Offer.find({}, "-_id -__v");
-    res.status(200).json(offers);
+    return offers
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error" });
+    res.json({ error: "Internal server error" });
   }
 };
 

@@ -1,10 +1,26 @@
-const scraperInsertia = require('../utils/scraperInsertia')
-const scraperJobatus = require('../utils/scraperJobatus')
+const scraperInsertia = require('../utils/scraperInsertia');
+const scraperJobatus = require('../utils/scraperJobatus');
 const Offer = require("../models/offers");
+const offersControllers = require("../controllers/offersControllers");
+
+const adminHome = async (req,res) => {
+    try{
+        let adminOffers = await offersControllers.getOffers();
+        console.log(adminOffers);
+    
+        res.status(200).render("admin_home.pug", {
+            "Offers": adminOffers
+        })
+    }catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+}
+
+
+
 
 const homeSearch =  (req, res) => {
-    console.log(req.decoded);
-
     if(req.decoded == null) {
         res.status(200).render("home_out.pug")
     } else {
@@ -12,14 +28,11 @@ const homeSearch =  (req, res) => {
     }
 }
 const userProfile = (req, res) => {
-
     if(req.decoded == undefined) {
         res.clearCookie("access-token")
         res.redirect("/")
     } else {
         const { name, surname, email, city } = req.decoded;
-    
-        console.log(req.decoded);
         res.status(200).render("profile.pug", {
             name: name,
             surname:surname,
@@ -27,7 +40,6 @@ const userProfile = (req, res) => {
             city: city
         });
     }
-
 }
 const userFavorites = (req, res) => {
     res.status(200).render("userFavorites.pug")
@@ -92,9 +104,7 @@ const userSignUp  = (req, res) => {
     res.status(200).render("createAccount.pug")
 }
 
-const adminHome = (req,res) => {
-    res.status(200).render("admin_home.pug")
-}
+
 
 module.exports = {
     homeSearch,
