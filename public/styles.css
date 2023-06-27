@@ -147,7 +147,7 @@ nav > .button {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.button {
+.button, .remoffer{
     width: 60%;
     padding: 2%;
     border: 1vw solid var(--main-teal-color);
@@ -156,7 +156,7 @@ nav > .button {
     border-radius: 2vw 2vw;
     font-size: 5vw;
 }
-.button:hover{
+.button:hover, .remoffer:hover{
     background-color: var(--main-teal-color);
     color: white;
     box-shadow: 0 0px 10px -2px white;
@@ -173,6 +173,9 @@ input[type="submit"]:hover, .mainbtns:hover{
 }
 .hamicon-container{
     width: 15%;
+}
+.remoffer{
+    margin: 4% auto;
 }
 
 /* LOGO HOME  --------------------------------------------------------------------------------- */
