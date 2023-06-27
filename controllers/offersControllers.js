@@ -42,7 +42,8 @@ const createOffer = async (req, res) => {
       salary,
       description,
     });
-    res.status(201).json(newOffer);
+    // res.status(201).json(newOffer);
+    res.redirect('/admin')
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

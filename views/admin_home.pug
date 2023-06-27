@@ -35,45 +35,6 @@ html(lang="en")
                     textarea(name="description", cols="40", rows="20") 
                     input(type="submit" value="Create Offer" class="button") 
             section 
-                    each object in Offers
-                        article(class="article_offer")
-                            each valor, key in object
-                                if key == "error"
-                                    h3 ERROR! #{valor}
-
-                                if key == "title"
-                                    h3 #{valor}
-
-                                if key == "companyName"
-                                    h3 #{valor}
-
-                                div(class="dataOffer")
-                                    if key == "location"
-                                        div(class="dataOfferItem") 
-                                            p Location: 
-                                            p #{valor}
-                                    
-                                    if key == "experience"
-                                        div(class="dataOfferItem")
-                                        p Experiencia: 
-                                        p #{valor} 
-                                    
-                                    if key == "contract_type"
-                                        div(class="dataOfferItem")
-                                        p Tipo de contrato: 
-                                        p #{valor}
-
-                                    if key == "work_schedule"
-                                        div(class="dataOfferItem")
-                                            p Jornada: 
-                                            p #{valor}
-                                    
-                                    if key == "salary"
-                                        div(class="dataOfferItem")
-                                            p Salario: 
-                                            p #{valor}
-
-                                    if key == "description"
-                                        p Descripción: #{valor}
+            include ./admin_getOffers
         include ./footer
                 
