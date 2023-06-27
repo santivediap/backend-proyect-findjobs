@@ -6,8 +6,6 @@ const offersControllers = require("../controllers/offersControllers");
 const adminHome = async (req,res) => {
     try{
         let adminOffers = await offersControllers.getOffers();
-        console.log(adminOffers);
-    
         res.status(200).render("admin_home.pug", {
             "Offers": adminOffers
         })

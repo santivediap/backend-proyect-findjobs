@@ -8,15 +8,13 @@ html(lang="en")
         link(rel="stylesheet" href=" ../styles.css")
         link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
-        header    
+        header   
             nav                      
-                img(src="/assets/ham_menu.png", alt="menu",  class="header_icons", id="menu_icon")
                 a.button(href="/users/logout" id="logOutButton" class="button") LOG OUT
-    div(id="menu") 
         main
             section
                 h1 HELLO ADMIN
-                form(action="/api/offers" class="signUp-form" method="POST")
+                form(action="/api/offers" class="signUp-form croffadm" method="POST")
                     label Offer Title: 
                     input(type="text" name="title")
                     label Company name: 
@@ -32,9 +30,10 @@ html(lang="en")
                     label Salary: 
                     input(type="text" name="salary")
                     label Description: 
-                    textarea(name="description", cols="40", rows="20") 
+                    textarea(name="description", cols="45", rows="12") 
                     input(type="submit" value="Create Offer" class="button") 
             section 
             include ./admin_getOffers
+        script(src="../scripts.js")
         include ./footer
                 

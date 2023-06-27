@@ -1,20 +1,20 @@
-h4 Your offers published
+h3 Your offers published
     each object in Offers
         article(class="article_offer")
-            each valor, key in object
-                if key == "error"
-                    h3 ERROR! #{valor}
+            div(class="dataOffer")
+                each valor, key in object
+                    if key == "error"
+                        h3 ERROR! #{valor}
 
-                if key == "title"
-                    h3 #{valor}
+                    if key == "title"
+                        h3 #{valor}
 
-                if key == "companyName"
-                    h3 #{valor}
+                    if key == "companyName"
+                        h3 #{valor}
 
-                div(class="dataOffer")
                     if key == "location"
                         div(class="dataOfferItem") 
-                            p Location: 
+                            p Ubicación: 
                             p #{valor}
                     
                     if key == "experience"
@@ -39,3 +39,7 @@ h4 Your offers published
 
                     if key == "description"
                         p Descripción: #{valor}
+
+                    if key == "_id"
+                        button(class="remoffer" id=valor) Remove offer
+               

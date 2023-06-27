@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-h1, h2, h3{
+h1, h2, h3, h4{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 header {
@@ -54,6 +54,7 @@ section{
 }
 label{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 5vw;
     color: var(--main-grey-color);
     margin: 2.5px 0 5px;
 }
@@ -98,6 +99,12 @@ margin-left: 7%;
 .signUp-form > input[type="submit"]{
     margin: 8px auto;
 
+}
+/* CREATE OFFER FROM ADMIN FORM  -------------------------------------------------------- */ 
+.croffadm{
+    margin: 0 auto;
+    border-bottom: var(--main-teal-color) solid 2px;
+    padding-bottom: 1em;
 }
 /* HAMBURGUER MENU ---------------------------------------------------------------------- */
 #menu{

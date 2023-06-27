@@ -4,8 +4,9 @@ const Offer = require("../models/offers");
 // Obtiene todas las ofertas de trabajo de la BBDD
 const getOffers = async (req, res) => {
   try {
-    const offers = await Offer.find({}, "-_id -__v");
+    const offers = await Offer.find({}, "-__v");
     return offers
+    // res.json({'offers': offers})
   } catch (error) {
     console.error(error);
     res.json({ error: "Internal server error" });
@@ -88,6 +89,8 @@ const deleteOffer = async (req, res) => {
     const deletedOffer = await Offer.findByIdAndDelete(id);
     if (!deletedOffer) {
       return res.status(404).json({ error: "Offer not found" });
+    }else{
+      Offer.deleteOne({id})
     }
     res.status(204).end();
   } catch (error) {
