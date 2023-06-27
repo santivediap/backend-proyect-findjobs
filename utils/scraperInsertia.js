@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+require('dotenv').config()
 
 const scrapOfferData = async (url) => {
 
@@ -8,7 +9,17 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: false
+          headless: false,
+          args: [
+            "--disable-setuid-sandbox",
+            "--no-sandbox",
+            "--single-proccess",
+            "--no-zygote",
+          ],
+          executablePath:
+            proccess.env.NODE_ENV === "production"
+                ? proccess.env.PUPPETEER_EXECUTABLE_PATH
+                : puppeteer.executablePath(),
         });
 
         console.log("ESTOY HACIENDO SCRAPPING!!!");
