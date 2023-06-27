@@ -13,12 +13,12 @@ const scrapOfferData = async (url) => {
           args: [
             "--disable-setuid-sandbox",
             "--no-sandbox",
-            "--single-proccess",
+            "--single-process",
             "--no-zygote",
           ],
           executablePath:
-            proccess.env.NODE_ENV === "production"
-                ? proccess.env.PUPPETEER_EXECUTABLE_PATH
+            process.env.NODE_ENV === "production"
+                ? process.env.PUPPETEER_EXECUTABLE_PATH
                 : puppeteer.executablePath(),
         });
 
