@@ -1,4 +1,4 @@
-# FINJOBS  -  PROYECTO BACKEND (FULLSTACK BOOTCAMP THE BRIDGE)
+# FINDJOBS  -  PROYECTO BACKEND (FULLSTACK BOOTCAMP THE BRIDGE)
 
 Esta es una aplicación web creada para aquellos que quieren encontrar su primer empleo en el mundo de la tecnología. Permite a los usuarios buscar a través de scrapin de dos páginas externas varios resultados acorde con su búsqueda con puesto de trabajo y provincia.
 
