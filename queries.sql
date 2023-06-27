@@ -13,12 +13,12 @@ CREATE TABLE users (
 CREATE TABLE favorites (
   id serial NOT NULL PRIMARY KEY,
   user_id INT,
-  company_name VARCHAR(50),
   title VARCHAR(100),
+  company_name VARCHAR(50),
   location VARCHAR(40),
-  work_schedule VARCHAR(40),
   experience VARCHAR(30),
   contract_type VARCHAR(30),
+  work_schedule VARCHAR(40),
   salary VARCHAR(40),
   description TEXT,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
