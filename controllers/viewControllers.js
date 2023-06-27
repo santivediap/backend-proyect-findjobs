@@ -1,5 +1,5 @@
 const scraperInsertia = require('../utils/scraperInsertia')
-// const scraperJobatus = require('../utils/scraperJobatus')
+const scraperJobatus = require('../utils/scraperJobatus')
 const Offer = require("../models/offers");
 
 const homeSearch =  (req, res) => {
