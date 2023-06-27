@@ -1,7 +1,6 @@
 require("./utils/db_mongo");
 const express = require('express');
 require('dotenv').config();
-const morgan = require('./utils/morgan');
 const error404 = require('./middlewares/error404')
 const cookieParser = require("cookie-parser");
 
@@ -35,9 +34,6 @@ app.set("views", "./views");
 
 //Rutas view PUG
 app.use("/", viewsRoutes);
-
-// Logger
-app.use(morgan(':method :host :status :param[id] - :response-time ms :body'));
 
 //Public folder
 app.use(express.static("public"));
