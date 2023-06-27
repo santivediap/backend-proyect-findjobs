@@ -1,30 +1,30 @@
 //* HAMBURGUER MENU DEL NAVBAR Y SU DESPLIEGUE   ---------------------------------
-const menu = document.getElementById('menu') // div del menú desplegado
-const menuIcon = document.getElementById('menu_icon')  //icono hamburguer
-const menuUl = document.createElement('ul'); 
-menuUl.setAttribute('class','menu_ul');
-if(menuIcon){
-  menuIcon.addEventListener('click', () => {
-    const menuItems = `
+
+const menu = document.getElementById("menu"); // div del menú desplegado
+const menuIcon = document.getElementById("menu_icon"); //icono hamburguer
+const menuUl = document.createElement("ul");
+menuUl.setAttribute("class", "menu_ul");
+function showNavbarItems() {
+  const menuItems = `
     <li><a href="drivers.html">FAVORITES</a></li>
-    <li><a href="home.html">USERS</a></li>
-    <li><a href="resultados.html">DASHBOARD</a></li>
+    <li><a href="home.html">SEARCH</a></li>
+    <li><a href="resultados.html">PROFILE</a></li>
   `;
-  if (menuUl.style.display === 'none') {
-    setTimeout(function() {
-      menu.style.opacity = '1';
+  if (menuUl.style.display === "none") {
+    setTimeout(function () {
+      menu.style.opacity = "1";
     }, 100);
-    menuUl.style.display = 'flex';
-    menu.style.borderTop = 'solid';
-    menu.style.borderTopColor = 'rgb(203, 25, 25)';
+    menuUl.style.display = "flex";
+    menu.style.borderTop = "solid";
+    menu.style.borderTopColor = "rgb(203, 25, 25)";
   } else {
-    menuUl.style.display = 'none';
-    menu.style.borderTop = 'none';
+    menuUl.style.display = "none";
+    menu.style.borderTop = "none";
   }
   menu.appendChild(menuUl);
-  menuUl.innerHTML= menuItems;
-  });
+  menuUl.innerHTML = menuItems;
 }
+
 //Event Listener for menu
 if (menuIcon) {
   menuIcon.addEventListener("click", () => {
@@ -33,35 +33,37 @@ if (menuIcon) {
 }
 
 function validateSearch(event) {
-        if(/^([a-zA-Z\s-]+)/gm.test(event.target.position.value) == true && /^([a-zA-Z\s-]+)/gm.test(event.target.location.value) == true) {
-            return true;
-        } else {
-            return false
-        }
+  if (
+    /^([a-zA-Z\s-]+)/gm.test(event.target.position.value) == true &&
+    /^([a-zA-Z\s-]+)/gm.test(event.target.location.value) == true
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function searchJobs() {
-    if(document.getElementById("search-form")) {
-        const formElement = document.getElementById("search-form")
-        formElement.addEventListener("submit", async (event) => {
-
-            if(!validateSearch(event)) {
-                event.preventDefault()
-                console.log("NO VALIDAAA");
-            }
-        })
-    }
+  if (document.getElementById("search-form")) {
+    const formElement = document.getElementById("search-form");
+    formElement.addEventListener("submit", async (event) => {
+      if (!validateSearch(event)) {
+        event.preventDefault();
+        console.log("NO VALIDAAA");
+      }
+    });
+  }
 }
 
-searchJobs()
+searchJobs();
 
 //adding a job offer to favorites
-function addToFavorites() {
-  fetch(/api/offers, {
+function addToFavorites(offerId) {
+  fetch("/favorites", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      body: JSON.stringify,
+      body: JSON.stringify({ offerId }),
     },
   })
     .then((response) => response.json())
@@ -85,5 +87,4 @@ function displayFavorites() {
       console.log("Error fetching favorites:", error);
     });
 }
-
 displayFavorites();
