@@ -57,14 +57,36 @@ function searchJobs() {
 
 searchJobs();
 
-//adding a job offer to favorites
-function addToFavorites(offerId) {
+//favorite function//
+//with ids/
+
+function addToFavorites(offerData) {
+  const {
+    title,
+    company_name,
+    location,
+    work_schedule,
+    experience,
+    contract_type,
+    salary,
+    description,
+  } = offerData;
+
   fetch("/favorites", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      body: JSON.stringify({ offerId }),
     },
+    body: JSON.stringify({
+      title,
+      company_name,
+      location,
+      work_schedule,
+      experience,
+      contract_type,
+      salary,
+      description,
+    }),
   })
     .then((response) => response.json())
     .then((data) => {
@@ -74,17 +96,94 @@ function addToFavorites(offerId) {
       console.log("Error adding job offer to favorites:", error);
     });
 }
-
-//fetching and display favorites in user profile
 function displayFavorites() {
   fetch("/favorites/dashboard")
     .then((response) => response.json())
     .then((data) => {
-      // Display the favorites data in your profile/favorites section
       console.log("Favorites:", data);
     })
     .catch((error) => {
       console.log("Error fetching favorites:", error);
     });
 }
+
+//delete favorite offer//
+function deleteFavorite(offerId) {
+  fetch(`/favorites/${offerId}`, {
+    method: "DELETE",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Favorite offer deleted:", data);
+    })
+    .catch((error) => {
+      console.log("Error deleting favorite offer:", error);
+    });
+}
 displayFavorites();
+
+if (document.querySelector(".search_info")) {
+  console.log("wee");
+  let jobOffers = document.querySelectorAll(".article_offer > button");
+
+  console.log(jobOffers);
+
+  jobOffers.forEach((offer, i) => {
+    offer.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      let company_name = null;
+      let location = null;
+      let experience = null;
+      let contract_type = null;
+      let work_schedule = null;
+      let salary = null;
+
+      const title = document.querySelectorAll("#title")[i].innerHTML;
+      if (document.querySelectorAll("#companyName")[i]) {
+        company_name = document.querySelectorAll("#companyName")[i].innerHTML;
+      }
+      if (document.querySelectorAll("#location")[i]) {
+        location = document.querySelectorAll("#location")[i].innerHTML;
+      }
+      if (document.querySelectorAll("#experience")[i]) {
+        experience = document.querySelectorAll("#experience")[i].innerHTML;
+      }
+      if (document.querySelectorAll("#contract_type")[i]) {
+        contract_type =
+          document.querySelectorAll("#contract_type")[i].innerHTML;
+      }
+      if (document.querySelectorAll("#work_schedule")[i]) {
+        work_schedule =
+          document.querySelectorAll("#work_schedule")[i].innerHTML;
+      }
+      if (document.querySelectorAll("#salary")[i]) {
+        salary = document.querySelectorAll("#salary")[i].innerHTML;
+      }
+      const description =
+        document.querySelectorAll("#description")[i].innerHTML;
+
+      console.log(
+        title,
+        company_name,
+        location,
+        experience,
+        contract_type,
+        work_schedule,
+        salary,
+        description
+      );
+
+      addToFavorites({
+        title,
+        company_name,
+        location,
+        experience,
+        contract_type,
+        work_schedule,
+        salary,
+        description,
+      });
+    });
+  });
+}
