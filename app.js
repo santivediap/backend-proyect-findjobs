@@ -4,8 +4,6 @@ require('dotenv').config();
 const error404 = require('./middlewares/error404')
 const cookieParser = require("cookie-parser");
 
-// const bodyParser = require('body-parser');
-
 const app = express();
 const port = "3000";
 
@@ -39,8 +37,6 @@ app.use("/", viewsRoutes);
 app.use(express.static("public"));
 
 //  ------   Middlewares   --------
-// app.use(bodyParser.urlencoded({ extended: true })); // Configuración del middleware body-parser
-// app.use(bodyParser.json());
 app.use(error404); // Para ruta no encontrada (404)
 
 app.listen(port, () => {

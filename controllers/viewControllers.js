@@ -3,6 +3,7 @@ const scraperJobatus = require('../utils/scraperJobatus');
 const Offer = require("../models/offers");
 const offersControllers = require("../controllers/offersControllers");
 
+
 const adminHome = async (req,res) => {
     try{
         let adminOffers = await offersControllers.getOffers();
@@ -14,9 +15,6 @@ const adminHome = async (req,res) => {
       res.status(500).json({ error: "Internal server error" });
     }
 }
-
-
-
 
 const homeSearch =  (req, res) => {
     if(req.decoded == null) {

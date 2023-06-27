@@ -28,10 +28,3 @@ CREATE TABLE favorites (
 
 
 
--- INSERT NEW JOB OFFER AS FAVORITE --
-INSERT INTO favorites (id, user_id, company_name, title, description, location, salary, date)
-VALUES (1, 1, 'Nombre de la compañía', 'Título de la oferta', 'Descripción de la oferta', 'Ubicación de la oferta', 50000.00, '2023-06-18');
-
--- INSERT A NEW USER --
-INSERT INTO users (id, name, surname, email, city)
-VALUES (1, 'John', 'Doe', 'johndoe@example.com', 'New York');

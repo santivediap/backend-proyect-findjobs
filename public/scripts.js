@@ -1,6 +1,4 @@
-
-
-//* HAMBURGUER MENU DEL NAVBAR Y SU DESPLIEGUE   ---------------------------------
+// HAMBURGUER MENU DEL NAVBAR Y SU DESPLIEGUE   ---------------------------------
 const menu = document.getElementById('menu') // div del menú desplegado
 const menuIcon = document.getElementById('menu_icon')  //icono hamburguer
 const menuUl = document.createElement('ul'); 
