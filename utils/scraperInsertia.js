@@ -9,7 +9,6 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: false,
           args: [
             "--disable-setuid-sandbox",
             "--no-sandbox",
