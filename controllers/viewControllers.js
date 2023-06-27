@@ -41,8 +41,8 @@ const searchResult = async (req, res) => {
     let insertiaResults = await scraperInsertia.scrapOfferData(`https://www.insertia.net/trabajo-de-${req.query.position.toLowerCase()}/${req.query.location.toLowerCase()}-${req.query.location.toLowerCase()}`)
                 .then(insertia => insertia)
 
-    // let jobatusResults = await scraperJobatus.scrapOfferData(`https://www.jobatus.es/trabajo?q=${req.query.position}&l=${req.query.location}&jb=all&sort=&d=&page=1`)
-    //             .then(jobatus => jobatus)
+    let jobatusResults = await scraperJobatus.scrapOfferData(`https://www.jobatus.es/trabajo?q=${req.query.position}&l=${req.query.location}&jb=all&sort=&d=&page=1`)
+                .then(jobatus => jobatus)
 
     let databaseResults = await Offer.find({ "title" : { $regex: titleRegex, $options: 'i' }, "location" : { $regex: locationRegex, $options: 'i' } }, "-_id -__v");
                 
@@ -52,9 +52,9 @@ const searchResult = async (req, res) => {
         result.push(...insertiaResults)
     }
 
-    // if(jobatusResults != null) {
-    //     result.push(...jobatusResults)
-    // }
+    if(jobatusResults != null) {
+        result.push(...jobatusResults)
+    }
 
     if(databaseResults.length > 0) {
         result.push(...databaseResults)
