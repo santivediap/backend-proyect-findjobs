@@ -53,7 +53,7 @@ const createFavorites = async (offer_data) => {
       description,
     ]);
     result = data.rowCount;
-    console.log(result);
+    // console.log(result);
   } catch (err) {
     console.log(err);
     throw err;
@@ -89,10 +89,6 @@ const deleteFavorite = async (offer) => {
   }
   return result;
 };
-
-// {
-//     "title":"TecnoPro Webs"
-// }
 
 module.exports = {
   getAllFavorites,
