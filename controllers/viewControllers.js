@@ -3,6 +3,7 @@ const scraperJobatus = require('../utils/scraperJobatus')
 const Offer = require("../models/offers");
 const users = require("../models/usersModels");
 const favs = require("../models/favoritesModels");
+const offersControllers = require('../controllers/offersControllers')
 
 const homeSearch =  (req, res) => {
     if(req.decoded == null) {
