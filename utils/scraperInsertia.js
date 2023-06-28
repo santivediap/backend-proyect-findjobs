@@ -77,14 +77,14 @@ const scrapOfferData = async (url) => {
 
 /** 
   * <pre>
-  *  -----------------------------------------------
+  * GET DATA FROM SELECTORS' WEBS
   * </pre>
   * @memberof utils 
   * @method extractProductData 
   * @async 
-  * @param {String} url objeto para identificar web del scraping
-  * @param {String} browser   ------------------ 
-  * @return {}   -------------------
+  * @param {String} url String para identificar web del scraping
+  * @param {Object} browser  Objeto de información del browser
+  * @return {Object} Objeto con la info de cada selector (position offer, company name, location, work_schedule, experience, contract_type, salary, description)
   * @throws {error} 
   */
 // Creamos una función para extraer la información de cada producto
@@ -96,7 +96,7 @@ const extractProductData = async (url,browser) => {
         // Accedemos al link de cada producto que nos llega por parámetros
         await page.goto(url)
 
-        const jobSpecificData = page.$$eval(".col-xs-6.col-md-4.mb-4", data => {   //------------------------
+        const jobSpecificData = page.$$eval(".col-xs-6.col-md-4.mb-4", data => {   
             let offerData = {}
 
             for(let i = 0; i < data.length; i++) {
