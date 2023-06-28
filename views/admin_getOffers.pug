@@ -7,38 +7,48 @@ h3 Your offers published
                         h3 ERROR! #{valor}
 
                     if key == "title"
-                        h3 #{valor}
+                        div.info-container
+                            h3#title #{valor}
 
                     if key == "companyName"
-                        h3 #{valor}
-
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/edificio-de-oficinas.png", alt="companylogo")
+                            p#companyName #{valor}
+                    
                     if key == "location"
-                        div(class="dataOfferItem") 
-                            p Ubicación: 
-                            p #{valor}
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/ubicaciones.png", alt="companylocation")
+                            p#location #{valor}
                     
                     if key == "experience"
-                        div(class="dataOfferItem")
-                        p Experiencia: 
-                        p #{valor} 
-                    
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/experiencia.png", alt="companyexperience")
+                            p#experience #{valor}
+
                     if key == "contract_type"
-                        div(class="dataOfferItem")
-                        p Tipo de contrato: 
-                        p #{valor}
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/documento.png", alt="companycontract_type")
+                            p#contract_type #{valor}
 
                     if key == "work_schedule"
-                        div(class="dataOfferItem")
-                            p Jornada: 
-                            p #{valor}
-                    
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/calendario.png", alt="companywork_schedule")
+                            p#work_schedule #{valor}
+
                     if key == "salary"
-                        div(class="dataOfferItem")
-                            p Salario: 
-                            p #{valor}
+                        div.info-container
+                            div.icon-container
+                                img(src="/assets/salario.png", alt="companysalary")
+                            p#salary #{valor}
 
                     if key == "description"
-                        p Descripción: #{valor}
+                        div.info-container
+                            p#description #{valor}
 
                     if key == "_id"
                         button(class="remoffer" id=valor) Remove offer

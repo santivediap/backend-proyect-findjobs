@@ -9,8 +9,9 @@ html(lang="en")
         link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
         header
-            nav 
-                img(src="/assets/logo.png", alt="logo" id="logoNav")
+            nav
+                a(href="/" class="header_icons") 
+                    img(src="/assets/logo.png", class="header_icons", alt="logo" id="logoNav")
         main 
             h1 LOG IN 
             form(action="/users/auth/login" class="search-form" id="search-form" method="POST")
@@ -19,5 +20,5 @@ html(lang="en")
                 input(type="submit" value="Enter" class="button") 
             div(class="parabtn-container")
                 h3 Don't you have an account yet?
-                button(class="button mainbtns") Create an account
+                a(href="/create-account" class="button mainbtns") Create an account
         include ./footer.pug

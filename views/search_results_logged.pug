@@ -4,15 +4,24 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title FAVORITES
+        title SEARCHED OFFERS
         link(rel="stylesheet" href=" ../styles.css")
         link(rel="icon" type="image/x-icon" href="/assets/logo.png")
     body
         include ./header_in.pug
         main
-            section 
-                h1 MY FAVORITE JOB OFFERS
-                div(class="parabtn-container")
+            section
+                article 
+                    form(action="" class="search-form" id="search-form")
+                        input(type="text" placeholder="Position" name="position")
+                        input(type="text" placeholder="City" name="location") 
+                        input(type="submit" value="Search" class="button")  
+                    div(class="search_info")
+                        h3 These are the results for
+                        div(id="search_inputValues")
+                            p #{position}
+                            p #{location}
+
                     each val, valkey in scrap
                         article(class="article_offer" id=valkey)
                             each valor, key in val
@@ -62,5 +71,7 @@ html(lang="en")
                                 if key == "description"
                                     div.info-container
                                         p#description #{valor}
+                            button(class="button" id=valkey) Favorite 
         include ./footer.pug
-        script(src="../scripts.js")
+    script(src="../scripts.js") 
+
