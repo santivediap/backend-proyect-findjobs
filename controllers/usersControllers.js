@@ -59,7 +59,12 @@ const loginUser = async (req, res) => {
                     const token = jwt.sign(userForToken, jwt_secret, {expiresIn: '10m'});
     
                     res.status(200).cookie("access-token", token);
-                    res.redirect(`/users/profile?t=${token}`);
+
+                    if(searchedUser[0].role == "admin") {
+                    res.redirect(`/admin?t=${token}`);
+                    } else {
+                      res.redirect(`/users/profile?t=${token}`);
+                    }
                     
                 } else {
                     res.json({
