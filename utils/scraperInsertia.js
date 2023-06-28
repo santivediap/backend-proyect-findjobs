@@ -6,6 +6,7 @@
 
 
 const puppeteer = require("puppeteer");
+require('dotenv').config()
 
 /** 
   * <pre>
@@ -25,10 +26,19 @@ const scrapOfferData = async (url) => {
 
         // Arrancamos pupeteer
         const browser = await puppeteer.launch({
-          headless: false,
-          defaultViewport: null,
-          args: ["--start-maximized"],
-        });
+            args: [
+              "--disable-setuid-sandbox",
+              "--no-sandbox",
+              "--single-process",
+              "--no-zygote",
+            ],
+            executablePath:
+              process.env.NODE_ENV === "production"
+                  ? process.env.PUPPETEER_EXECUTABLE_PATH
+                  : puppeteer.executablePath(),
+          });
+  
+          console.log("ESTOY HACIENDO SCRAPPING!!!");
 
         // Abrimos nueva pagina
         const page = await browser.newPage();
