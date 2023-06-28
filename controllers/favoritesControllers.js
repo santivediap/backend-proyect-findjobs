@@ -44,13 +44,17 @@ const getAllFavorites = async (req, res) => {
   * @throws {error} 
   */
 const createFavorite = async (req, res) => {
-    const offer_data = req.body;// body = { email, company_name, title, location, work_schedule, experience, contract_type, salary, description }
-    const response = await favs.createFavorites(offer_data);
-    res.status(201).json({
-        "Oferta favorita creada:": response,
-        data: offer_data
-    });
-}
+  const offer_data = req.body; // body = { email, title, company_name, location, work_schedule, experience, contract_type, salary, description }
+  const email = req.decoded.email;
+  // console.log(req.body);
+  const data = { email, ...offer_data };
+  // console.log(data);
+  const response = await favs.createFavorites(data);
+  res.status(201).json({
+    "Oferta favorita creada:": response,
+    data: offer_data,
+  });
+};
 
 /** 
   * <pre>
@@ -68,7 +72,7 @@ const createFavorite = async (req, res) => {
 const deleteFavorite = async (req, res) => {
   const offer_data = req.body; // body = {title}
   const response = await favs.deleteFavorite(offer_data);
-  console.log(offer_data);
+  // console.log(offer_data);
   if (offer_data) {
     res.status(200).json({
       "Se ha borrado la oferta de favoritos": response,
