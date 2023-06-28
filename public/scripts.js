@@ -42,7 +42,6 @@ function searchJobs() {
     formElement.addEventListener("submit", async (event) => {
       if (!validateSearch(event)) {
         event.preventDefault();
-        console.log("NO VALIDAAA");
       }
     });
   }
@@ -57,12 +56,9 @@ const getIdOffers = () => {
   for (let i = 0; i < offersData.length; i++) {
     admin_offersID.push(offersData[i].id);
   }
-  console.log(admin_offersID);
   return admin_offersID
 }
 const admin_offersID = getIdOffers()
-// console.log(id_Offers);
-// console.log(id_Offers[0].id);
 async function admin_deleteOffer(id) {
   try {
     const response = await fetch(`/api/offers/${id}`, {
@@ -111,7 +107,7 @@ function addToFavorites(offerData) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Job offer added to favorites:", data);
+      // console.log("Job offer added to favorites:", data);
     })
     .catch((error) => {
       console.log("Error adding job offer to favorites:", error);
@@ -121,7 +117,7 @@ function displayFavorites() {
   fetch("/favorites/dashboard")
     .then((response) => response.json())
     .then((data) => {
-      console.log("Favorites:", data);
+      // console.log("Favorites:", data);
     })
     .catch((error) => {
       console.log("Error fetching favorites:", error);
@@ -144,10 +140,7 @@ function deleteFavorite(offerId) {
 displayFavorites();
 
 if (document.querySelector(".search_info")) {
-  console.log("wee");
   let jobOffers = document.querySelectorAll(".article_offer > button");
-
-  console.log(jobOffers);
 
   jobOffers.forEach((offer, i) => {
     offer.addEventListener("click", (e) => {
@@ -183,17 +176,6 @@ if (document.querySelector(".search_info")) {
       }
       const description =
         document.querySelectorAll("#description")[i].innerHTML;
-
-      console.log(
-        title,
-        company_name,
-        location,
-        experience,
-        contract_type,
-        work_schedule,
-        salary,
-        description
-      );
 
       addToFavorites({
         title,
