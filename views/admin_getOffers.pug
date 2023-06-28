@@ -1,55 +1,55 @@
 h3 Your offers published
-    each object in Offers
-        article(class="article_offer")
-            div(class="dataOffer")
-                each valor, key in object
-                    if key == "error"
-                        h3 ERROR! #{valor}
+each object in Offers
+    article(class="article_offer")
+        div(class="dataOffer")
+            each valor, key in object
+                if key == "error"
+                    h3 ERROR! #{valor}
 
-                    if key == "title"
-                        div.info-container
-                            h3#title #{valor}
+                if key == "title"
+                    div.info-container
+                        h3#title #{valor}
 
-                    if key == "companyName"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/edificio-de-oficinas.png", alt="companylogo")
-                            p#companyName #{valor}
-                    
-                    if key == "location"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/ubicaciones.png", alt="companylocation")
-                            p#location #{valor}
-                    
-                    if key == "experience"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/experiencia.png", alt="companyexperience")
-                            p#experience #{valor}
+                if key == "companyName"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/edificio-de-oficinas.png", alt="companylogo")
+                        p#companyName #{valor}
+                
+                if key == "location"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/ubicaciones.png", alt="companylocation")
+                        p#location #{valor}
+                
+                if key == "experience"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/experiencia.png", alt="companyexperience")
+                        p#experience #{valor}
 
-                    if key == "contract_type"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/documento.png", alt="companycontract_type")
-                            p#contract_type #{valor}
+                if key == "contract_type"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/documento.png", alt="companycontract_type")
+                        p#contract_type #{valor}
 
-                    if key == "work_schedule"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/calendario.png", alt="companywork_schedule")
-                            p#work_schedule #{valor}
+                if key == "work_schedule"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/calendario.png", alt="companywork_schedule")
+                        p#work_schedule #{valor}
 
-                    if key == "salary"
-                        div.info-container
-                            div.icon-container
-                                img(src="/assets/salario.png", alt="companysalary")
-                            p#salary #{valor}
+                if key == "salary"
+                    div.info-container
+                        div.icon-container
+                            img(src="/assets/salario.png", alt="companysalary")
+                        p#salary #{valor}
 
-                    if key == "description"
-                        div.info-container
-                            p#description #{valor}
+                if key == "description"
+                    div.info-container
+                        p#description #{valor}
 
-                    if key == "_id"
-                        button(class="remoffer" id=valor) Remove offer
-               
+                if key == "_id"
+                    button(class="remoffer" id=valor) Remove offer
+            
