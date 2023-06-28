@@ -31,7 +31,7 @@ const signUpUser = async (req, res) => {
       // res.status(201).json(data);
       res.redirect(`/`);
     } else {
-      res.status(400).json({ msg: "Invalid email or password" });
+      res.status(400).redirect("/create-account")
     }
   } catch (error) {
     console.log("Error:", error);
@@ -67,9 +67,7 @@ const loginUser = async (req, res) => {
                     }
                     
                 } else {
-                    res.json({
-                        "response": "ERROR!"
-                    })
+                  res.status(400).redirect("/user-login")
                 }
 
   } catch (error) {
