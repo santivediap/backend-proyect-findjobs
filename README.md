@@ -27,18 +27,31 @@ Esta es una aplicación web creada para aquellos que quieren encontrar su primer
 
 ## Estructura de la Aplicación.
 ![home](public/assets/Captura1.PNG)
+
 - **Inicio**: Página principal desde donde se genera la interacción inicial. Incluye un formulario de búsqueda que lleva a la vista de resultados.
+
 ![Navbar](public/assets/NavbarCaptura.PNG)
+
 - **Resultados**: Esta vista muestra las ofertas de empleo que coinciden con la búsqueda, obtenidas a través del web scraping, y las ofertas de empleo provenientes de la base de datos de Atlas de MongoDB. Si un usuario ha iniciado sesión, se muestra un botón "Favoritos" en cada tarjeta de oferta, y las ofertas seleccionadas se guardan en la base de datos SQL.
+
 ![Results](<public/assets/Results captura.PNG>)
+
 - **Autenticación**: La barra de navegación contiene botones para crear una cuenta e iniciar sesión. Si un usuario no está registrado, se le anima a crear una cuenta. Al iniciar sesión, los usuarios son redirigidos a su página de perfil.
+
 ![Signup](public/assets/Signupcaptura.PNG)
+
 - **Perfil de Usuario**: Los usuarios pueden ver su información obtenida de la base de datos SQL. A través de la navegación del menú y los diferentes iconos de la barra de navegación, los usuarios pueden acceder a la página de favoritos.
+
 ![Profile](public/assets/profilecaptura.PNG)
+
 - **Favoritos**: En esta página se muestran las tarjetas de las ofertas de empleo seleccionadas por el usuario en la vista de resultados.
+
 ![Favorites](<public/assets/favoritos captura.png>)
+
 - **Vista del Administrador**: Es una vista privada a la que solo pueden acceder los usuarios con rol de administrador al iniciar sesión. El rol de administrador se define en la base de datos SQL. En esta vista, el administrador puede crear y eliminar ofertas de empleo que se almacenan en Atlas.
+
 ![Admin1](<public/assets/admin captura 1.PNG>)
+
 ![Admin2](<public/assets/admin captura 2.PNG>)
 
 
