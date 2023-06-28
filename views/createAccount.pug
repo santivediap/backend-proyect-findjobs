@@ -28,51 +28,5 @@ html(lang="en")
                 label Reapeat your password:
                 input(type="password" placeholder="repeat password" name="repeat_password") 
                 input(type="submit" value="Enter" class="button") 
-        //- script.
-        //-     function validateForm() {   //VALIDACIÓN FORMULARIO SIGNUP
-        //-         let userName = document.querySelector('input[name="user_name"]');
-        //-         let userSurname = document.querySelector('input[name="user_surname"]');
-        //-         let city = document.querySelector('input[name="user_city"]');
-        //-         let email = document.querySelector('input[name="user_email"]');
-        //-         let password = document.querySelector('input[name="user_password"]');
-        //-         let repeatedPassword = document.querySelector('input[name="repeat_password"]');
-        //-         let regexName = /^(?=.*[a-zA-ZáéíóúÁÉÍÓÚñÑ'-]+).{2,}$/
-        //-         let regexEmail = /^[A-Za-z0-9_.]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-        //-         let regexPassword = /^(?=.*[a-zA-Z])(?=.*\d).{6,}$/;
 
-        //-         let isValid = true;
-        //-         // Validar nombre
-        //-         if (!regexName.test(userName)) {    
-        //-             alert("Invalid name format");
-        //-             return;
-        //-         }
-        //-         // Validar apellido
-        //-         if (!regexName.test(userSurname)) {    
-        //-             alert("Invalid surname format");
-        //-             return;
-        //-         }
-        //-         // Validar ciudad
-        //-         if (city.value === "" || city.value === " ") {
-        //-             city.classList.add("error");
-        //-             isValid = false;
-        //-         } else {
-        //-             city.classList.remove("error");
-        //-         }
-        //-         // Validar email
-        //-         if (!regexEmail.test(email)) {    
-        //-             alert("Invalid name format");
-        //-             return;
-        //-         }
-        //-         // Validar contraseña
-        //-          if (!passwordRegex.test(password)) {
-        //-             alert("Invalid password format. It should have at least 6 characters and include letters and numbers.");
-        //-             return;
-        //-         }
-        //-         if(password != repeatedPassword){
-        //-             alert("Repeated password did not match with the first one.")
-        //-             return;
-        //-         }
-        //-         console.log('formulario validado')
-        //-         return isValid;
-        //-     }
         include ./footer.pug
