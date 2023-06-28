@@ -322,6 +322,7 @@ margin: 6px 0;
 .dataOffer{
     display: flex;
     flex-direction: column;
+    width: 90%;
 }
 .dataOffer > p {
     margin: 6px 0;
@@ -365,4 +366,183 @@ section > h1 {
 .objectValue{
     margin-top: 9px;
     padding: 0 0 0  20px;
+}
+
+/* @media (min-width: 600px) and (max-width: 1000px) { */
+
+@media (min-width: 770px) {
+    main > h1 {
+        font-size: 4vw;
+    }
+
+    section > h1 {
+        font-size: 4vw;
+    }
+    
+
+    nav > .button {
+        width: 18%;
+        font-size: 1vw;
+    }
+
+    .logo_wrapper {
+        width: 90%;
+        margin-bottom: .2em;
+        margin-top: .2em;
+    }
+    .logo_wrapper > h1 {
+        font-family: "Moirai One";
+        font-size: 4vw;
+        margin: 6px 0;
+    }
+
+    .main_logo {
+        width: 15%;
+    }
+
+    .button, .remoffer{
+        width: 30%;
+        padding: 2%;
+        border: .5vw solid var(--main-teal-color);
+        background-color: #262626;
+        color: #ffffff;
+        border-radius: 1vw 1vw;
+        text-align: center;
+        font-size: 2vw;
+    }
+
+    .search-form {
+        padding: 2%;
+        width: 70%;
+        min-height: 8vh;
+    }
+    .search-form > input[type="text"], .signUp-form > input[type="text"] , input[type="email"], input[type="password"]{
+        padding: 2%;
+        padding-left: 3%;
+        width: 80%;
+        border: .5vw solid rgb(33, 33, 33);
+        border-radius: 5vw 5vw;
+        font-size: 2vw;
+        margin-bottom: 3%;
+    }
+
+    footer > div > p {
+        font-size: 1vw;
+        width: 90%;
+        color: white;
+        text-align: justify;
+        margin: 2px 0 6px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .footer_containers {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icons_footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 6px 0;
+    }
+
+    .icons_footer > img{
+        width: 6%;
+    }
+
+    .parabtn-container > h3 {
+        font-size: 3vw;
+    }
+
+    .signUp-form {
+        width: 70%;
+    }
+
+    .signUp-form > input[type="submit"] {
+        margin: 8px auto;
+    }
+
+    label {
+        font-size: 2.5vw;
+        margin: 2.5px 0 5px;
+    }
+
+    .header_icons{
+        cursor: pointer;
+        width: 40%;
+    }
+
+    .objectKey, .objectValue {
+        font-size: 2vw;
+    }
+
+    .objectKey{
+        border-bottom: #00D09C 3px solid;
+        margin-bottom: 2px;
+        width: 40%;
+        color: var(--main-grey-color);
+        font-weight: 700;
+    }
+
+    .article_offer{
+        margin-top: 3vw;
+        padding: 2vw;
+        background-color: #ffffff;
+        border-radius: 5vw 5vw;
+        width: 90%;
+    }
+
+    .info-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    
+    .info-container > p {
+        font-size: 1.5vw;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    
+    .info-container > h3 {
+        font-size: 3vw;
+    }
+    
+    .icon-container {
+        width: 4%;
+        margin-right: 2%;
+    }
+    
+    .icon-container > img {
+        width: 100%;
+    }
+
+    #search_inputValues > p{
+        font-size: 1.5vw;
+    }
+    
+    #search_inputValues > p{
+        background-color: var(--main-grey-color);
+        width: 40%;
+        text-align: center;
+        border-radius: 5vw 5vw;
+        padding: 2.3vw 0;
+    }
+
+    .search_info{
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border-radius:5vw 5vw;
+        width: 90%;
+    }
+    .search_info > h3{
+        margin-bottom: 2vw;
+        padding-left: 5vw;
+        font-size: 2vw;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
 }
